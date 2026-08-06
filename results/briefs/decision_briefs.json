@@ -1,0 +1,4470 @@
+{
+  "run_id": "20260806T160154-42",
+  "brief_day": 40,
+  "briefs": {
+    "AAPL": {
+      "run_id": "20260806T160154-42",
+      "entity": "AAPL",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-0-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "8-K-0-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "8-K-0-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-0-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-0-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-0-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-0-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-0-3",
+          "timestamp": "D0035"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for AAPL covering FY0: reported revenue guidance revision, EPS 3.30, cost guidance tightened by 1.5%.",
+          "citations": [
+            "10-K-0-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for AAPL covering FY0: reported revenue guidance revision, EPS 5.88, cost guidance tightened by 3.4%.",
+          "citations": [
+            "8-K-0-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for AAPL covering FY0: reported revenue guidance revision, EPS 5.43, cost guidance tightened by 2.8%.",
+          "citations": [
+            "8-K-0-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AAPL: analyst flags margin compression.",
+          "citations": [
+            "news-0-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AAPL: analyst flags margin compression.",
+          "citations": [
+            "news-0-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AAPL: analyst flags margin compression.",
+          "citations": [
+            "news-0-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on AAPL: overweight on guidance; sees 23% upside.",
+          "citations": [
+            "news-0-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on AAPL: overweight on guidance; sees 25% upside.",
+          "citations": [
+            "news-0-3"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@AAPL",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.611,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.8061,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0199,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@AAPL",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.479,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0213,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@AAPL",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.34,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0211,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@AAPL",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.321,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0236,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@AAPL",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.838,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.446,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@AAPL",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.269,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0238,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@AAPL",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.638,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.1358,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0175,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_aapl_fund",
+          "sender": "aapl_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7304,
+          "content": "AAPL position disclosure: accumulating 0.5% of float; conviction 0.71."
+        },
+        {
+          "signal_id": "tx_aapl_regulator",
+          "sender": "aapl_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7214,
+          "content": "AAPL position disclosure: accumulating 3.0% of float; conviction 0.66."
+        },
+        {
+          "signal_id": "tx_aapl_insider",
+          "sender": "aapl_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.5493,
+          "content": "AAPL insider certified filing revision: guidance raised by 6.3%; costs under control."
+        },
+        {
+          "signal_id": "tx_aapl_journalist",
+          "sender": "aapl_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.3428,
+          "content": "AAPL media: positive framing of guidance results."
+        },
+        {
+          "signal_id": "tx_aapl_supplier",
+          "sender": "aapl_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2319,
+          "content": "AAPL commentary: cautious on margin; sees 3% move."
+        },
+        {
+          "signal_id": "tx_aapl_analyst",
+          "sender": "aapl_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2274,
+          "content": "AAPL commentary: bullish on demand; sees 8% move."
+        },
+        {
+          "signal_id": "tx_aapl_competitor",
+          "sender": "aapl_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2052,
+          "content": "AAPL commentary: cautious on guidance; sees 9% move."
+        }
+      ],
+      "posterior_confidence": 0.5676,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_aapl_insider",
+          "credibility": 0.5493,
+          "direction": 1,
+          "posterior": 0.5493
+        },
+        {
+          "signal_id": "tx_aapl_analyst",
+          "credibility": 0.2274,
+          "direction": 1,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_competitor",
+          "credibility": 0.2052,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_supplier",
+          "credibility": 0.2319,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_regulator",
+          "credibility": 0.7214,
+          "direction": 1,
+          "posterior": 0.4816
+        },
+        {
+          "signal_id": "tx_aapl_journalist",
+          "credibility": 0.3428,
+          "direction": 1,
+          "posterior": 0.3264
+        },
+        {
+          "signal_id": "tx_aapl_fund",
+          "credibility": 0.7304,
+          "direction": 1,
+          "posterior": 0.5676
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@AAPL signal for AAPL (credible senders: insider@AAPL, regulator@AAPL, fund@AAPL); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "AMZN": {
+      "run_id": "20260806T160154-42",
+      "entity": "AMZN",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-3-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-3-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "10-K-3-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "8-K-3-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-3-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-3-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-3-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-3-3",
+          "timestamp": "D0035"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for AMZN covering FY3: reported revenue guidance revision, EPS 2.57, cost guidance tightened by 2.9%.",
+          "citations": [
+            "10-K-3-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for AMZN covering FY3: reported revenue guidance revision, EPS 4.71, cost guidance tightened by 1.9%.",
+          "citations": [
+            "10-K-3-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for AMZN covering FY3: reported revenue guidance revision, EPS 2.94, cost guidance tightened by 3.1%.",
+          "citations": [
+            "10-K-3-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for AMZN covering FY3: reported revenue guidance revision, EPS 2.72, cost guidance tightened by 1.4%.",
+          "citations": [
+            "8-K-3-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AMZN: analyst flags margin compression.",
+          "citations": [
+            "news-3-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AMZN: analyst flags margin compression.",
+          "citations": [
+            "news-3-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on AMZN: analyst flags margin compression.",
+          "citations": [
+            "news-3-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on AMZN: overweight on guidance; sees 22% upside.",
+          "citations": [
+            "news-3-3"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@AMZN",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.574,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.434,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0167,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@AMZN",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.42,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0222,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@AMZN",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.425,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0195,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@AMZN",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.451,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0207,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@AMZN",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.798,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.7465,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@AMZN",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.259,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0151,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@AMZN",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.604,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.9994,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0189,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_amzn_regulator",
+          "sender": "amzn_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5725,
+          "content": "AMZN position disclosure: accumulating 2.9% of float; conviction 0.69."
+        },
+        {
+          "signal_id": "tx_amzn_insider",
+          "sender": "amzn_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.5046,
+          "content": "AMZN insider certified filing revision: guidance raised by 2.5%; costs rising."
+        },
+        {
+          "signal_id": "tx_amzn_fund",
+          "sender": "amzn_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "pooling",
+          "credibility": 0.4944,
+          "content": "AMZN position disclosure: accumulating 0.7% of float; conviction 0.82."
+        },
+        {
+          "signal_id": "tx_amzn_competitor",
+          "sender": "amzn_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3702,
+          "content": "AMZN commentary: bullish on demand; sees 3% move."
+        },
+        {
+          "signal_id": "tx_amzn_supplier",
+          "sender": "amzn_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2418,
+          "content": "AMZN commentary: cautious on demand; sees 6% move."
+        },
+        {
+          "signal_id": "tx_amzn_analyst",
+          "sender": "amzn_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1255,
+          "content": "AMZN commentary: bullish on margin; sees 6% move."
+        },
+        {
+          "signal_id": "tx_amzn_journalist",
+          "sender": "amzn_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.1031,
+          "content": "AMZN media: negative framing of quarter results."
+        }
+      ],
+      "posterior_confidence": 0.4946,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_amzn_insider",
+          "credibility": 0.5046,
+          "direction": 1,
+          "posterior": 0.5046
+        },
+        {
+          "signal_id": "tx_amzn_analyst",
+          "credibility": 0.1255,
+          "direction": 1,
+          "posterior": 0.1275
+        },
+        {
+          "signal_id": "tx_amzn_competitor",
+          "credibility": 0.3702,
+          "direction": 1,
+          "posterior": 0.0791
+        },
+        {
+          "signal_id": "tx_amzn_supplier",
+          "credibility": 0.2418,
+          "direction": 0,
+          "posterior": 0.0791
+        },
+        {
+          "signal_id": "tx_amzn_regulator",
+          "credibility": 0.5725,
+          "direction": 1,
+          "posterior": 0.1032
+        },
+        {
+          "signal_id": "tx_amzn_journalist",
+          "credibility": 0.1031,
+          "direction": -1,
+          "posterior": 0.5002
+        },
+        {
+          "signal_id": "tx_amzn_fund",
+          "credibility": 0.4944,
+          "direction": 1,
+          "posterior": 0.4946
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@AMZN signal for AMZN (credible senders: insider@AMZN, regulator@AMZN); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "BA": {
+      "run_id": "20260806T160154-42",
+      "entity": "BA",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-9-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "10-K-9-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "8-K-9-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "10-K-9-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-9-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-9-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-9-3",
+          "timestamp": "D0035"
+        },
+        {
+          "source_id": "news-9-0",
+          "timestamp": "D0020"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for BA covering FY9: reported revenue guidance revision, EPS 4.50, cost guidance tightened by 2.0%.",
+          "citations": [
+            "8-K-9-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for BA covering FY9: reported revenue guidance revision, EPS 4.53, cost guidance tightened by 3.3%.",
+          "citations": [
+            "10-K-9-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for BA covering FY9: reported revenue guidance revision, EPS 2.44, cost guidance tightened by 1.6%.",
+          "citations": [
+            "8-K-9-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for BA covering FY9: reported revenue guidance revision, EPS 1.77, cost guidance tightened by 2.2%.",
+          "citations": [
+            "10-K-9-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for BA covering FY9: reported revenue guidance revision, EPS 1.67, cost guidance tightened by 1.1%.",
+          "citations": [
+            "10-K-9-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on BA: overweight on guidance; sees 12% upside.",
+          "citations": [
+            "news-9-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on BA: underweight on guidance; sees 24% upside.",
+          "citations": [
+            "news-9-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on BA: analyst flags margin compression.",
+          "citations": [
+            "news-9-0"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@BA",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.542,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.3332,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.024,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@BA",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.475,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.021,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@BA",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.361,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0172,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@BA",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.345,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0187,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@BA",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.786,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.7595,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@BA",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.239,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0174,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@BA",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.639,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.1873,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0153,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_ba_insider",
+          "sender": "ba_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.8168,
+          "content": "BA insider certified filing revision: guidance raised by 4.5%; costs under control."
+        },
+        {
+          "signal_id": "tx_ba_fund",
+          "sender": "ba_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.6695,
+          "content": "BA position disclosure: accumulating 1.3% of float; conviction 0.71."
+        },
+        {
+          "signal_id": "tx_ba_regulator",
+          "sender": "ba_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.329,
+          "content": "BA position disclosure: accumulating 1.5% of float; conviction 0.64."
+        },
+        {
+          "signal_id": "tx_ba_supplier",
+          "sender": "ba_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3169,
+          "content": "BA commentary: cautious on demand; sees 9% move."
+        },
+        {
+          "signal_id": "tx_ba_competitor",
+          "sender": "ba_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2642,
+          "content": "BA commentary: cautious on guidance; sees 12% move."
+        },
+        {
+          "signal_id": "tx_ba_journalist",
+          "sender": "ba_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.2289,
+          "content": "BA media: positive framing of quarter results."
+        },
+        {
+          "signal_id": "tx_ba_analyst",
+          "sender": "ba_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1434,
+          "content": "BA commentary: bullish on guidance; sees 10% move."
+        }
+      ],
+      "posterior_confidence": 0.1804,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_ba_insider",
+          "credibility": 0.8168,
+          "direction": 1,
+          "posterior": 0.8168
+        },
+        {
+          "signal_id": "tx_ba_analyst",
+          "credibility": 0.1434,
+          "direction": 1,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_competitor",
+          "credibility": 0.2642,
+          "direction": 0,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_supplier",
+          "credibility": 0.3169,
+          "direction": 0,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_regulator",
+          "credibility": 0.329,
+          "direction": 1,
+          "posterior": 0.2679
+        },
+        {
+          "signal_id": "tx_ba_journalist",
+          "credibility": 0.2289,
+          "direction": 1,
+          "posterior": 0.098
+        },
+        {
+          "signal_id": "tx_ba_fund",
+          "credibility": 0.6695,
+          "direction": 1,
+          "posterior": 0.1804
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@BA signal for BA (credible senders: insider@BA, regulator@BA, fund@BA); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "JPM": {
+      "run_id": "20260806T160154-42",
+      "entity": "JPM",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-5-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "8-K-5-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "8-K-5-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-5-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-5-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-5-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-5-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-5-3",
+          "timestamp": "D0035"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for JPM covering FY5: reported revenue guidance revision, EPS 5.19, cost guidance tightened by 2.2%.",
+          "citations": [
+            "10-K-5-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for JPM covering FY5: reported revenue guidance revision, EPS 4.48, cost guidance tightened by 0.6%.",
+          "citations": [
+            "8-K-5-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for JPM covering FY5: reported revenue guidance revision, EPS 4.33, cost guidance tightened by 3.2%.",
+          "citations": [
+            "8-K-5-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on JPM: analyst flags margin compression.",
+          "citations": [
+            "news-5-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on JPM: analyst flags margin compression.",
+          "citations": [
+            "news-5-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on JPM: analyst flags growth slowdown.",
+          "citations": [
+            "news-5-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on JPM: overweight on guidance; sees 9% upside.",
+          "citations": [
+            "news-5-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on JPM: overweight on demand; sees 14% upside.",
+          "citations": [
+            "news-5-3"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@JPM",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.495,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.252,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0224,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@JPM",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.481,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.016,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@JPM",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.319,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0237,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@JPM",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.363,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0237,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@JPM",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.844,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.7962,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@JPM",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.186,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0249,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@JPM",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.521,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.2107,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.017,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_jpm_fund",
+          "sender": "jpm_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.6805,
+          "content": "JPM position disclosure: trimming 2.5% of float; conviction 0.83."
+        },
+        {
+          "signal_id": "tx_jpm_analyst",
+          "sender": "jpm_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.5386,
+          "content": "JPM commentary: bullish on demand; sees 5% move."
+        },
+        {
+          "signal_id": "tx_jpm_regulator",
+          "sender": "jpm_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.4308,
+          "content": "JPM position disclosure: accumulating 2.2% of float; conviction 0.85."
+        },
+        {
+          "signal_id": "tx_jpm_insider",
+          "sender": "jpm_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.3934,
+          "content": "JPM insider certified filing revision: guidance lowered by 6.6%; costs under control."
+        },
+        {
+          "signal_id": "tx_jpm_journalist",
+          "sender": "jpm_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.3093,
+          "content": "JPM media: positive framing of quarter results."
+        },
+        {
+          "signal_id": "tx_jpm_competitor",
+          "sender": "jpm_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2308,
+          "content": "JPM commentary: cautious on margin; sees 7% move."
+        },
+        {
+          "signal_id": "tx_jpm_supplier",
+          "sender": "jpm_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1242,
+          "content": "JPM commentary: cautious on guidance; sees 7% move."
+        }
+      ],
+      "posterior_confidence": 0.1075,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_jpm_insider",
+          "credibility": 0.3934,
+          "direction": 1,
+          "posterior": 0.3934
+        },
+        {
+          "signal_id": "tx_jpm_analyst",
+          "credibility": 0.5386,
+          "direction": 1,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_competitor",
+          "credibility": 0.2308,
+          "direction": 0,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_supplier",
+          "credibility": 0.1242,
+          "direction": 0,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_regulator",
+          "credibility": 0.4308,
+          "direction": 1,
+          "posterior": 0.3643
+        },
+        {
+          "signal_id": "tx_jpm_journalist",
+          "credibility": 0.3093,
+          "direction": 1,
+          "posterior": 0.2042
+        },
+        {
+          "signal_id": "tx_jpm_fund",
+          "credibility": 0.6805,
+          "direction": -1,
+          "posterior": 0.1075
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@JPM signal for JPM (credible senders: insider@JPM, regulator@JPM, fund@JPM); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "KO": {
+      "run_id": "20260806T160154-42",
+      "entity": "KO",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-11-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "10-K-11-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-11-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "10-K-11-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "news-11-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-11-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-11-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-11-1",
+          "timestamp": "D0025"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for KO covering FY11: reported revenue guidance revision, EPS 4.51, cost guidance tightened by 1.6%.",
+          "citations": [
+            "8-K-11-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for KO covering FY11: reported revenue guidance revision, EPS 1.77, cost guidance tightened by 1.9%.",
+          "citations": [
+            "10-K-11-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for KO covering FY11: reported revenue guidance revision, EPS 1.66, cost guidance tightened by 1.9%.",
+          "citations": [
+            "10-K-11-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for KO covering FY11: reported revenue guidance revision, EPS 3.98, cost guidance tightened by 1.1%.",
+          "citations": [
+            "10-K-11-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on KO: analyst flags margin compression.",
+          "citations": [
+            "news-11-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on KO: analyst flags margin compression.",
+          "citations": [
+            "news-11-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on KO: analyst flags margin compression.",
+          "citations": [
+            "news-11-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on KO: neutral on guidance; sees 30% upside.",
+          "citations": [
+            "news-11-1"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@KO",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.58,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.7621,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0206,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@KO",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.499,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0216,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@KO",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.305,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0193,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@KO",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.39,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0225,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@KO",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.858,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.6517,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@KO",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.274,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0175,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@KO",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.624,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.2402,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0206,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_ko_fund",
+          "sender": "ko_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7917,
+          "content": "KO position disclosure: accumulating 1.6% of float; conviction 0.87."
+        },
+        {
+          "signal_id": "tx_ko_regulator",
+          "sender": "ko_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5684,
+          "content": "KO position disclosure: accumulating 2.0% of float; conviction 0.90."
+        },
+        {
+          "signal_id": "tx_ko_insider",
+          "sender": "ko_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.5069,
+          "content": "KO insider certified filing revision: guidance raised by 2.1%; costs rising."
+        },
+        {
+          "signal_id": "tx_ko_analyst",
+          "sender": "ko_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.447,
+          "content": "KO commentary: bullish on demand; sees 9% move."
+        },
+        {
+          "signal_id": "tx_ko_competitor",
+          "sender": "ko_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.4377,
+          "content": "KO commentary: cautious on guidance; sees 3% move."
+        },
+        {
+          "signal_id": "tx_ko_journalist",
+          "sender": "ko_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.2418,
+          "content": "KO media: neutral framing of guidance results."
+        },
+        {
+          "signal_id": "tx_ko_supplier",
+          "sender": "ko_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2171,
+          "content": "KO commentary: bullish on demand; sees 9% move."
+        }
+      ],
+      "posterior_confidence": 0.5356,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_ko_insider",
+          "credibility": 0.5069,
+          "direction": 1,
+          "posterior": 0.5069
+        },
+        {
+          "signal_id": "tx_ko_analyst",
+          "credibility": 0.447,
+          "direction": 1,
+          "posterior": 0.4538
+        },
+        {
+          "signal_id": "tx_ko_competitor",
+          "credibility": 0.4377,
+          "direction": 0,
+          "posterior": 0.4538
+        },
+        {
+          "signal_id": "tx_ko_supplier",
+          "credibility": 0.2171,
+          "direction": 1,
+          "posterior": 0.1873
+        },
+        {
+          "signal_id": "tx_ko_regulator",
+          "credibility": 0.5684,
+          "direction": 1,
+          "posterior": 0.2328
+        },
+        {
+          "signal_id": "tx_ko_journalist",
+          "credibility": 0.2418,
+          "direction": 0,
+          "posterior": 0.2328
+        },
+        {
+          "signal_id": "tx_ko_fund",
+          "credibility": 0.7917,
+          "direction": 1,
+          "posterior": 0.5356
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@KO signal for KO (credible senders: insider@KO, regulator@KO, fund@KO); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "MSFT": {
+      "run_id": "20260806T160154-42",
+      "entity": "MSFT",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-1-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "10-K-1-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-1-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "8-K-1-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-1-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-1-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-1-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-1-1",
+          "timestamp": "D0025"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for MSFT covering FY1: reported revenue guidance revision, EPS 2.77, cost guidance tightened by 0.7%.",
+          "citations": [
+            "8-K-1-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for MSFT covering FY1: reported revenue guidance revision, EPS 2.91, cost guidance tightened by 3.8%.",
+          "citations": [
+            "10-K-1-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for MSFT covering FY1: reported revenue guidance revision, EPS 1.17, cost guidance tightened by 2.4%.",
+          "citations": [
+            "10-K-1-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for MSFT covering FY1: reported revenue guidance revision, EPS 3.08, cost guidance tightened by 3.2%.",
+          "citations": [
+            "8-K-1-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on MSFT: analyst flags growth slowdown.",
+          "citations": [
+            "news-1-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on MSFT: analyst flags growth slowdown.",
+          "citations": [
+            "news-1-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on MSFT: analyst flags margin compression.",
+          "citations": [
+            "news-1-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on MSFT: neutral on guidance; sees 7% upside.",
+          "citations": [
+            "news-1-1"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@MSFT",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.539,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.4235,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0247,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@MSFT",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.352,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0238,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@MSFT",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.332,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.024,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@MSFT",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.423,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0166,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@MSFT",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.841,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.4356,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@MSFT",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.299,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0232,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@MSFT",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.637,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.1698,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0152,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_msft_regulator",
+          "sender": "msft_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7775,
+          "content": "MSFT position disclosure: accumulating 2.5% of float; conviction 0.67."
+        },
+        {
+          "signal_id": "tx_msft_fund",
+          "sender": "msft_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7591,
+          "content": "MSFT position disclosure: trimming 2.5% of float; conviction 0.72."
+        },
+        {
+          "signal_id": "tx_msft_insider",
+          "sender": "msft_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.6212,
+          "content": "MSFT insider certified filing revision: guidance raised by 6.8%; costs under control."
+        },
+        {
+          "signal_id": "tx_msft_supplier",
+          "sender": "msft_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3873,
+          "content": "MSFT commentary: cautious on guidance; sees 6% move."
+        },
+        {
+          "signal_id": "tx_msft_journalist",
+          "sender": "msft_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.2947,
+          "content": "MSFT media: negative framing of guidance results."
+        },
+        {
+          "signal_id": "tx_msft_competitor",
+          "sender": "msft_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2738,
+          "content": "MSFT commentary: bullish on demand; sees 8% move."
+        },
+        {
+          "signal_id": "tx_msft_analyst",
+          "sender": "msft_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2068,
+          "content": "MSFT commentary: bullish on demand; sees 11% move."
+        }
+      ],
+      "posterior_confidence": 0.2996,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_msft_insider",
+          "credibility": 0.6212,
+          "direction": 1,
+          "posterior": 0.6212
+        },
+        {
+          "signal_id": "tx_msft_analyst",
+          "credibility": 0.2068,
+          "direction": 1,
+          "posterior": 0.2995
+        },
+        {
+          "signal_id": "tx_msft_competitor",
+          "credibility": 0.2738,
+          "direction": 1,
+          "posterior": 0.1388
+        },
+        {
+          "signal_id": "tx_msft_supplier",
+          "credibility": 0.3873,
+          "direction": 0,
+          "posterior": 0.1388
+        },
+        {
+          "signal_id": "tx_msft_regulator",
+          "credibility": 0.7775,
+          "direction": 1,
+          "posterior": 0.3603
+        },
+        {
+          "signal_id": "tx_msft_journalist",
+          "credibility": 0.2947,
+          "direction": -1,
+          "posterior": 0.5741
+        },
+        {
+          "signal_id": "tx_msft_fund",
+          "credibility": 0.7591,
+          "direction": -1,
+          "posterior": 0.2996
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@MSFT signal for MSFT (credible senders: insider@MSFT, regulator@MSFT, fund@MSFT); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "NVDA": {
+      "run_id": "20260806T160154-42",
+      "entity": "NVDA",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-4-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-4-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "8-K-4-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-4-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-4-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-4-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-4-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-4-3",
+          "timestamp": "D0035"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for NVDA covering FY4: reported revenue guidance revision, EPS 4.43, cost guidance tightened by 0.5%.",
+          "citations": [
+            "10-K-4-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for NVDA covering FY4: reported revenue guidance revision, EPS 4.74, cost guidance tightened by 2.0%.",
+          "citations": [
+            "10-K-4-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for NVDA covering FY4: reported revenue guidance revision, EPS 5.12, cost guidance tightened by 2.9%.",
+          "citations": [
+            "8-K-4-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on NVDA: analyst flags margin compression.",
+          "citations": [
+            "news-4-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on NVDA: analyst flags margin compression.",
+          "citations": [
+            "news-4-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on NVDA: analyst flags margin compression.",
+          "citations": [
+            "news-4-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on NVDA: neutral on guidance; sees 28% upside.",
+          "citations": [
+            "news-4-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on NVDA: underweight on demand; sees 23% upside.",
+          "citations": [
+            "news-4-3"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@NVDA",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.584,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.5848,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0249,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@NVDA",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.446,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0168,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@NVDA",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.326,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0201,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@NVDA",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.318,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0236,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@NVDA",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.876,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.2322,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@NVDA",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.275,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0213,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@NVDA",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.584,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.1997,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0207,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_nvda_fund",
+          "sender": "nvda_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.6296,
+          "content": "NVDA position disclosure: accumulating 0.5% of float; conviction 0.66."
+        },
+        {
+          "signal_id": "tx_nvda_regulator",
+          "sender": "nvda_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5971,
+          "content": "NVDA position disclosure: trimming 1.1% of float; conviction 0.66."
+        },
+        {
+          "signal_id": "tx_nvda_insider",
+          "sender": "nvda_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.5152,
+          "content": "NVDA insider certified filing revision: guidance raised by 4.5%; costs rising."
+        },
+        {
+          "signal_id": "tx_nvda_competitor",
+          "sender": "nvda_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3228,
+          "content": "NVDA commentary: bullish on margin; sees 5% move."
+        },
+        {
+          "signal_id": "tx_nvda_supplier",
+          "sender": "nvda_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2357,
+          "content": "NVDA commentary: cautious on demand; sees 5% move."
+        },
+        {
+          "signal_id": "tx_nvda_journalist",
+          "sender": "nvda_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.2231,
+          "content": "NVDA media: negative framing of quarter results."
+        },
+        {
+          "signal_id": "tx_nvda_analyst",
+          "sender": "nvda_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.0947,
+          "content": "NVDA commentary: bullish on margin; sees 3% move."
+        }
+      ],
+      "posterior_confidence": 0.1747,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_nvda_insider",
+          "credibility": 0.5152,
+          "direction": 1,
+          "posterior": 0.5152
+        },
+        {
+          "signal_id": "tx_nvda_analyst",
+          "credibility": 0.0947,
+          "direction": 1,
+          "posterior": 0.1
+        },
+        {
+          "signal_id": "tx_nvda_competitor",
+          "credibility": 0.3228,
+          "direction": 1,
+          "posterior": 0.0503
+        },
+        {
+          "signal_id": "tx_nvda_supplier",
+          "credibility": 0.2357,
+          "direction": 0,
+          "posterior": 0.0503
+        },
+        {
+          "signal_id": "tx_nvda_regulator",
+          "credibility": 0.5971,
+          "direction": -1,
+          "posterior": 0.0345
+        },
+        {
+          "signal_id": "tx_nvda_journalist",
+          "credibility": 0.2231,
+          "direction": -1,
+          "posterior": 0.1107
+        },
+        {
+          "signal_id": "tx_nvda_fund",
+          "credibility": 0.6296,
+          "direction": 1,
+          "posterior": 0.1747
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@NVDA signal for NVDA (credible senders: insider@NVDA, regulator@NVDA, fund@NVDA); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "PG": {
+      "run_id": "20260806T160154-42",
+      "entity": "PG",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-8-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "10-K-8-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "8-K-8-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "10-K-8-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-8-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-8-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-8-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-8-0",
+          "timestamp": "D0020"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for PG covering FY8: reported revenue guidance revision, EPS 5.68, cost guidance tightened by 2.5%.",
+          "citations": [
+            "8-K-8-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for PG covering FY8: reported revenue guidance revision, EPS 1.83, cost guidance tightened by 1.9%.",
+          "citations": [
+            "10-K-8-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for PG covering FY8: reported revenue guidance revision, EPS 5.78, cost guidance tightened by 2.6%.",
+          "citations": [
+            "8-K-8-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for PG covering FY8: reported revenue guidance revision, EPS 4.22, cost guidance tightened by 2.1%.",
+          "citations": [
+            "10-K-8-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for PG covering FY8: reported revenue guidance revision, EPS 4.98, cost guidance tightened by 3.1%.",
+          "citations": [
+            "10-K-8-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on PG: analyst flags margin compression.",
+          "citations": [
+            "news-8-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on PG: analyst flags margin compression.",
+          "citations": [
+            "news-8-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on PG: analyst flags growth slowdown.",
+          "citations": [
+            "news-8-0"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@PG",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.539,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.2259,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0189,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@PG",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.397,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0217,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@PG",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.401,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0182,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@PG",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.33,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0189,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@PG",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.798,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.6807,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@PG",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.252,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.016,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@PG",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.623,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.4605,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0209,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_pg_regulator",
+          "sender": "pg_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.7751,
+          "content": "PG position disclosure: accumulating 1.5% of float; conviction 0.69."
+        },
+        {
+          "signal_id": "tx_pg_insider",
+          "sender": "pg_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.6872,
+          "content": "PG insider certified filing revision: guidance lowered by 7.1%; costs under control."
+        },
+        {
+          "signal_id": "tx_pg_journalist",
+          "sender": "pg_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.4627,
+          "content": "PG media: negative framing of quarter results."
+        },
+        {
+          "signal_id": "tx_pg_fund",
+          "sender": "pg_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.353,
+          "content": "PG position disclosure: accumulating 2.4% of float; conviction 0.79."
+        },
+        {
+          "signal_id": "tx_pg_analyst",
+          "sender": "pg_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3015,
+          "content": "PG commentary: bullish on margin; sees 4% move."
+        },
+        {
+          "signal_id": "tx_pg_competitor",
+          "sender": "pg_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2009,
+          "content": "PG commentary: bullish on demand; sees 12% move."
+        },
+        {
+          "signal_id": "tx_pg_supplier",
+          "sender": "pg_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1208,
+          "content": "PG commentary: bullish on margin; sees 8% move."
+        }
+      ],
+      "posterior_confidence": 0.0667,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_pg_insider",
+          "credibility": 0.6872,
+          "direction": 1,
+          "posterior": 0.6872
+        },
+        {
+          "signal_id": "tx_pg_analyst",
+          "credibility": 0.3015,
+          "direction": 1,
+          "posterior": 0.4867
+        },
+        {
+          "signal_id": "tx_pg_competitor",
+          "credibility": 0.2009,
+          "direction": 1,
+          "posterior": 0.1925
+        },
+        {
+          "signal_id": "tx_pg_supplier",
+          "credibility": 0.1208,
+          "direction": 1,
+          "posterior": 0.0317
+        },
+        {
+          "signal_id": "tx_pg_regulator",
+          "credibility": 0.7751,
+          "direction": 1,
+          "posterior": 0.1014
+        },
+        {
+          "signal_id": "tx_pg_journalist",
+          "credibility": 0.4627,
+          "direction": -1,
+          "posterior": 0.1159
+        },
+        {
+          "signal_id": "tx_pg_fund",
+          "credibility": 0.353,
+          "direction": 1,
+          "posterior": 0.0667
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@PG signal for PG (credible senders: insider@PG, regulator@PG, fund@PG); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "T": {
+      "run_id": "20260806T160154-42",
+      "entity": "T",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-10-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-10-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "8-K-10-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "10-K-10-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "8-K-10-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-10-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-10-3",
+          "timestamp": "D0035"
+        },
+        {
+          "source_id": "news-10-0",
+          "timestamp": "D0020"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for T covering FY10: reported revenue guidance revision, EPS 1.82, cost guidance tightened by 2.7%.",
+          "citations": [
+            "10-K-10-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for T covering FY10: reported revenue guidance revision, EPS 4.25, cost guidance tightened by 0.9%.",
+          "citations": [
+            "10-K-10-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for T covering FY10: reported revenue guidance revision, EPS 5.32, cost guidance tightened by 1.9%.",
+          "citations": [
+            "8-K-10-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for T covering FY10: reported revenue guidance revision, EPS 4.94, cost guidance tightened by 3.7%.",
+          "citations": [
+            "10-K-10-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for T covering FY10: reported revenue guidance revision, EPS 3.96, cost guidance tightened by 1.3%.",
+          "citations": [
+            "8-K-10-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on T: underweight on guidance; sees 30% upside.",
+          "citations": [
+            "news-10-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on T: underweight on guidance; sees 12% upside.",
+          "citations": [
+            "news-10-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on T: analyst flags margin compression.",
+          "citations": [
+            "news-10-0"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@T",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.575,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.2032,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.021,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@T",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.38,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0163,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@T",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.394,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0243,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@T",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.309,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0164,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@T",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.907,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.7193,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@T",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.185,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0163,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@T",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.583,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.3299,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0155,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_t_insider",
+          "sender": "t_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.5668,
+          "content": "T insider certified filing revision: guidance lowered by 2.9%; costs under control."
+        },
+        {
+          "signal_id": "tx_t_fund",
+          "sender": "t_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5499,
+          "content": "T position disclosure: accumulating 1.7% of float; conviction 0.76."
+        },
+        {
+          "signal_id": "tx_t_analyst",
+          "sender": "t_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.5339,
+          "content": "T commentary: bullish on margin; sees 6% move."
+        },
+        {
+          "signal_id": "tx_t_competitor",
+          "sender": "t_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.4375,
+          "content": "T commentary: bullish on demand; sees 10% move."
+        },
+        {
+          "signal_id": "tx_t_regulator",
+          "sender": "t_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.423,
+          "content": "T position disclosure: accumulating 1.8% of float; conviction 0.61."
+        },
+        {
+          "signal_id": "tx_t_supplier",
+          "sender": "t_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2152,
+          "content": "T commentary: cautious on demand; sees 4% move."
+        },
+        {
+          "signal_id": "tx_t_journalist",
+          "sender": "t_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.1505,
+          "content": "T media: positive framing of quarter results."
+        }
+      ],
+      "posterior_confidence": 0.1561,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_t_insider",
+          "credibility": 0.5668,
+          "direction": 1,
+          "posterior": 0.5668
+        },
+        {
+          "signal_id": "tx_t_analyst",
+          "credibility": 0.5339,
+          "direction": 1,
+          "posterior": 0.5998
+        },
+        {
+          "signal_id": "tx_t_competitor",
+          "credibility": 0.4375,
+          "direction": 1,
+          "posterior": 0.5383
+        },
+        {
+          "signal_id": "tx_t_supplier",
+          "credibility": 0.2152,
+          "direction": 0,
+          "posterior": 0.5383
+        },
+        {
+          "signal_id": "tx_t_regulator",
+          "credibility": 0.423,
+          "direction": 1,
+          "posterior": 0.4608
+        },
+        {
+          "signal_id": "tx_t_journalist",
+          "credibility": 0.1505,
+          "direction": 1,
+          "posterior": 0.1315
+        },
+        {
+          "signal_id": "tx_t_fund",
+          "credibility": 0.5499,
+          "direction": 1,
+          "posterior": 0.1561
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@T signal for T (credible senders: insider@T, regulator@T, fund@T); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "TSLA": {
+      "run_id": "20260806T160154-42",
+      "entity": "TSLA",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-2-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "8-K-2-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "10-K-2-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-2-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "10-K-2-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-2-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-2-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-2-2",
+          "timestamp": "D0030"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for TSLA covering FY2: reported revenue guidance revision, EPS 1.38, cost guidance tightened by 1.0%.",
+          "citations": [
+            "8-K-2-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for TSLA covering FY2: reported revenue guidance revision, EPS 2.74, cost guidance tightened by 2.2%.",
+          "citations": [
+            "8-K-2-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for TSLA covering FY2: reported revenue guidance revision, EPS 3.65, cost guidance tightened by 0.9%.",
+          "citations": [
+            "10-K-2-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for TSLA covering FY2: reported revenue guidance revision, EPS 2.30, cost guidance tightened by 3.4%.",
+          "citations": [
+            "10-K-2-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for TSLA covering FY2: reported revenue guidance revision, EPS 5.25, cost guidance tightened by 3.0%.",
+          "citations": [
+            "10-K-2-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on TSLA: analyst flags growth slowdown.",
+          "citations": [
+            "news-2-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on TSLA: analyst flags growth slowdown.",
+          "citations": [
+            "news-2-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on TSLA: analyst flags margin compression.",
+          "citations": [
+            "news-2-2"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@TSLA",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.55,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.3726,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0233,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@TSLA",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.491,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0219,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@TSLA",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.326,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0196,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@TSLA",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.356,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0198,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@TSLA",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.816,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.5636,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@TSLA",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.21,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0184,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@TSLA",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.618,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.9413,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0158,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_tsla_regulator",
+          "sender": "tsla_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5664,
+          "content": "TSLA position disclosure: trimming 2.1% of float; conviction 0.65."
+        },
+        {
+          "signal_id": "tx_tsla_supplier",
+          "sender": "tsla_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.4916,
+          "content": "TSLA commentary: bullish on demand; sees 5% move."
+        },
+        {
+          "signal_id": "tx_tsla_fund",
+          "sender": "tsla_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "pooling",
+          "credibility": 0.4498,
+          "content": "TSLA position disclosure: trimming 2.0% of float; conviction 0.62."
+        },
+        {
+          "signal_id": "tx_tsla_insider",
+          "sender": "tsla_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.4448,
+          "content": "TSLA insider certified filing revision: guidance lowered by 3.4%; costs under control."
+        },
+        {
+          "signal_id": "tx_tsla_journalist",
+          "sender": "tsla_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.3615,
+          "content": "TSLA media: positive framing of guidance results."
+        },
+        {
+          "signal_id": "tx_tsla_analyst",
+          "sender": "tsla_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3093,
+          "content": "TSLA commentary: bullish on guidance; sees 2% move."
+        },
+        {
+          "signal_id": "tx_tsla_competitor",
+          "sender": "tsla_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1199,
+          "content": "TSLA commentary: cautious on demand; sees 10% move."
+        }
+      ],
+      "posterior_confidence": 0.1553,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_tsla_insider",
+          "credibility": 0.4448,
+          "direction": 1,
+          "posterior": 0.4448
+        },
+        {
+          "signal_id": "tx_tsla_analyst",
+          "credibility": 0.3093,
+          "direction": 1,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_tsla_competitor",
+          "credibility": 0.1199,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_tsla_supplier",
+          "credibility": 0.4916,
+          "direction": 1,
+          "posterior": 0.2576
+        },
+        {
+          "signal_id": "tx_tsla_regulator",
+          "credibility": 0.5664,
+          "direction": -1,
+          "posterior": 0.2098
+        },
+        {
+          "signal_id": "tx_tsla_journalist",
+          "credibility": 0.3615,
+          "direction": 1,
+          "posterior": 0.1307
+        },
+        {
+          "signal_id": "tx_tsla_fund",
+          "credibility": 0.4498,
+          "direction": -1,
+          "posterior": 0.1553
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@TSLA signal for TSLA (credible senders: insider@TSLA, regulator@TSLA); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "UNH": {
+      "run_id": "20260806T160154-42",
+      "entity": "UNH",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "10-K-7-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-7-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-7-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "8-K-7-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-7-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-7-2",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "news-7-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "news-7-1",
+          "timestamp": "D0025"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "10-K filing for UNH covering FY7: reported revenue guidance revision, EPS 4.07, cost guidance tightened by 0.9%.",
+          "citations": [
+            "10-K-7-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for UNH covering FY7: reported revenue guidance revision, EPS 5.72, cost guidance tightened by 3.4%.",
+          "citations": [
+            "10-K-7-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for UNH covering FY7: reported revenue guidance revision, EPS 3.12, cost guidance tightened by 2.6%.",
+          "citations": [
+            "10-K-7-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for UNH covering FY7: reported revenue guidance revision, EPS 1.14, cost guidance tightened by 2.3%.",
+          "citations": [
+            "8-K-7-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on UNH: analyst flags margin compression.",
+          "citations": [
+            "news-7-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on UNH: analyst flags margin compression.",
+          "citations": [
+            "news-7-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on UNH: analyst flags margin compression.",
+          "citations": [
+            "news-7-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on UNH: underweight on guidance; sees 10% upside.",
+          "citations": [
+            "news-7-1"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@UNH",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.624,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.6399,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0159,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@UNH",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.4,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0165,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@UNH",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.362,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0189,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@UNH",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.347,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0181,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@UNH",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.835,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.6958,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@UNH",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.193,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0175,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@UNH",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.548,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.0937,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0183,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_unh_fund",
+          "sender": "unh_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.5459,
+          "content": "UNH position disclosure: trimming 2.4% of float; conviction 0.90."
+        },
+        {
+          "signal_id": "tx_unh_insider",
+          "sender": "unh_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.51,
+          "content": "UNH insider certified filing revision: guidance lowered by 3.3%; costs under control."
+        },
+        {
+          "signal_id": "tx_unh_regulator",
+          "sender": "unh_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.3926,
+          "content": "UNH position disclosure: accumulating 0.7% of float; conviction 0.67."
+        },
+        {
+          "signal_id": "tx_unh_supplier",
+          "sender": "unh_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.2924,
+          "content": "UNH commentary: bullish on demand; sees 5% move."
+        },
+        {
+          "signal_id": "tx_unh_competitor",
+          "sender": "unh_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1982,
+          "content": "UNH commentary: cautious on demand; sees 6% move."
+        },
+        {
+          "signal_id": "tx_unh_analyst",
+          "sender": "unh_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.172,
+          "content": "UNH commentary: bullish on guidance; sees 3% move."
+        },
+        {
+          "signal_id": "tx_unh_journalist",
+          "sender": "unh_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.169,
+          "content": "UNH media: neutral framing of quarter results."
+        }
+      ],
+      "posterior_confidence": 0.0458,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_unh_insider",
+          "credibility": 0.51,
+          "direction": 1,
+          "posterior": 0.51
+        },
+        {
+          "signal_id": "tx_unh_analyst",
+          "credibility": 0.172,
+          "direction": 1,
+          "posterior": 0.1778
+        },
+        {
+          "signal_id": "tx_unh_competitor",
+          "credibility": 0.1982,
+          "direction": 0,
+          "posterior": 0.1778
+        },
+        {
+          "signal_id": "tx_unh_supplier",
+          "credibility": 0.2924,
+          "direction": 1,
+          "posterior": 0.082
+        },
+        {
+          "signal_id": "tx_unh_regulator",
+          "credibility": 0.3926,
+          "direction": 1,
+          "posterior": 0.0546
+        },
+        {
+          "signal_id": "tx_unh_journalist",
+          "credibility": 0.169,
+          "direction": 0,
+          "posterior": 0.0546
+        },
+        {
+          "signal_id": "tx_unh_fund",
+          "credibility": 0.5459,
+          "direction": -1,
+          "posterior": 0.0458
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@UNH signal for UNH (credible senders: insider@UNH, regulator@UNH, fund@UNH); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    },
+    "XOM": {
+      "run_id": "20260806T160154-42",
+      "entity": "XOM",
+      "brief_time": 40,
+      "sources_used": [
+        {
+          "source_id": "8-K-6-3",
+          "timestamp": "D0030"
+        },
+        {
+          "source_id": "10-K-6-2",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "10-K-6-0",
+          "timestamp": "D0000"
+        },
+        {
+          "source_id": "10-K-6-4",
+          "timestamp": "D0040"
+        },
+        {
+          "source_id": "8-K-6-1",
+          "timestamp": "D0010"
+        },
+        {
+          "source_id": "news-6-1",
+          "timestamp": "D0025"
+        },
+        {
+          "source_id": "news-6-0",
+          "timestamp": "D0020"
+        },
+        {
+          "source_id": "news-6-2",
+          "timestamp": "D0030"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "8-K filing for XOM covering FY6: reported revenue guidance revision, EPS 5.98, cost guidance tightened by 1.2%.",
+          "citations": [
+            "8-K-6-3"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for XOM covering FY6: reported revenue guidance revision, EPS 5.18, cost guidance tightened by 3.4%.",
+          "citations": [
+            "10-K-6-2"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for XOM covering FY6: reported revenue guidance revision, EPS 2.58, cost guidance tightened by 2.7%.",
+          "citations": [
+            "10-K-6-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "10-K filing for XOM covering FY6: reported revenue guidance revision, EPS 1.88, cost guidance tightened by 1.4%.",
+          "citations": [
+            "10-K-6-4"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "8-K filing for XOM covering FY6: reported revenue guidance revision, EPS 1.76, cost guidance tightened by 1.8%.",
+          "citations": [
+            "8-K-6-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Analyst commentary on XOM: underweight on guidance; sees 17% upside.",
+          "citations": [
+            "news-6-1"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on XOM: analyst flags margin compression.",
+          "citations": [
+            "news-6-0"
+          ],
+          "confidence": "high"
+        },
+        {
+          "claim": "Media headline on XOM: analyst flags margin compression.",
+          "citations": [
+            "news-6-2"
+          ],
+          "confidence": "high"
+        }
+      ],
+      "transmitting_players": [
+        {
+          "player": "insider@XOM",
+          "role": "insider",
+          "relation": "insider_of",
+          "credibility_prior": 0.497,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.3058,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0225,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "analyst@XOM",
+          "role": "analyst",
+          "relation": "covers",
+          "credibility_prior": 0.47,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0196,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "competitor@XOM",
+          "role": "competitor",
+          "relation": "competitor_of",
+          "credibility_prior": 0.402,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0246,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "supplier@XOM",
+          "role": "supplier",
+          "relation": "supplier_to",
+          "credibility_prior": 0.417,
+          "signal_access": [
+            {
+              "signal_type": "certified_filing",
+              "can_observe": false,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "filings"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0217,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "regulator@XOM",
+          "role": "regulator",
+          "relation": "regulates",
+          "credibility_prior": 0.849,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.4427,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "journalist@XOM",
+          "role": "journalist",
+          "relation": "covers_news",
+          "credibility_prior": 0.315,
+          "signal_access": [
+            {
+              "signal_type": "media",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0172,
+              "channel": "media"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": false,
+              "transmit_cost": 0.0,
+              "channel": "commentary"
+            }
+          ]
+        },
+        {
+          "player": "fund@XOM",
+          "role": "fund",
+          "relation": "invested_in",
+          "credibility_prior": 0.557,
+          "signal_access": [
+            {
+              "signal_type": "disclosure",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 1.4613,
+              "channel": "disclosures"
+            },
+            {
+              "signal_type": "commentary",
+              "can_observe": true,
+              "can_transmit": true,
+              "transmit_cost": 0.0247,
+              "channel": "commentary"
+            }
+          ]
+        }
+      ],
+      "signal_credibility": [
+        {
+          "signal_id": "tx_xom_insider",
+          "sender": "xom_insider",
+          "role": "insider",
+          "signal_type": "certified_filing",
+          "equilibrium": "separating",
+          "credibility": 0.6985,
+          "content": "XOM insider certified filing revision: guidance raised by 7.5%; costs rising."
+        },
+        {
+          "signal_id": "tx_xom_journalist",
+          "sender": "xom_journalist",
+          "role": "journalist",
+          "signal_type": "media",
+          "equilibrium": "pooling",
+          "credibility": 0.404,
+          "content": "XOM media: neutral framing of guidance results."
+        },
+        {
+          "signal_id": "tx_xom_fund",
+          "sender": "xom_fund",
+          "role": "fund",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.3966,
+          "content": "XOM position disclosure: accumulating 2.0% of float; conviction 0.74."
+        },
+        {
+          "signal_id": "tx_xom_regulator",
+          "sender": "xom_regulator",
+          "role": "regulator",
+          "signal_type": "disclosure",
+          "equilibrium": "separating",
+          "credibility": 0.3461,
+          "content": "XOM position disclosure: accumulating 1.7% of float; conviction 0.62."
+        },
+        {
+          "signal_id": "tx_xom_competitor",
+          "sender": "xom_competitor",
+          "role": "competitor",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.3433,
+          "content": "XOM commentary: cautious on margin; sees 8% move."
+        },
+        {
+          "signal_id": "tx_xom_analyst",
+          "sender": "xom_analyst",
+          "role": "analyst",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.266,
+          "content": "XOM commentary: bullish on guidance; sees 8% move."
+        },
+        {
+          "signal_id": "tx_xom_supplier",
+          "sender": "xom_supplier",
+          "role": "supplier",
+          "signal_type": "commentary",
+          "equilibrium": "pooling",
+          "credibility": 0.1757,
+          "content": "XOM commentary: bullish on guidance; sees 4% move."
+        }
+      ],
+      "posterior_confidence": 0.0586,
+      "posterior_trajectory": [
+        {
+          "signal_id": "tx_xom_insider",
+          "credibility": 0.6985,
+          "direction": 1,
+          "posterior": 0.6985
+        },
+        {
+          "signal_id": "tx_xom_analyst",
+          "credibility": 0.266,
+          "direction": 1,
+          "posterior": 0.4564
+        },
+        {
+          "signal_id": "tx_xom_competitor",
+          "credibility": 0.3433,
+          "direction": 0,
+          "posterior": 0.4564
+        },
+        {
+          "signal_id": "tx_xom_supplier",
+          "credibility": 0.1757,
+          "direction": 1,
+          "posterior": 0.1518
+        },
+        {
+          "signal_id": "tx_xom_regulator",
+          "credibility": 0.3461,
+          "direction": 1,
+          "posterior": 0.0865
+        },
+        {
+          "signal_id": "tx_xom_journalist",
+          "credibility": 0.404,
+          "direction": 0,
+          "posterior": 0.0865
+        },
+        {
+          "signal_id": "tx_xom_fund",
+          "credibility": 0.3966,
+          "direction": 1,
+          "posterior": 0.0586
+        }
+      ],
+      "research_direction": "Prioritize verification of the insider@XOM signal for XOM (credible senders: insider@XOM, regulator@XOM, fund@XOM); monitor subsequent filings to confirm the separating signal's direction before committing research capital.",
+      "low_confidence_claims": []
+    }
+  }
+}

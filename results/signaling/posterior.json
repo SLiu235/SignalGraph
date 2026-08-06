@@ -1,0 +1,582 @@
+{
+  "run_id": "20260806T160153-42",
+  "prior": 0.5,
+  "companies": {
+    "AAPL": {
+      "prior": 0.5,
+      "posterior": 0.5676,
+      "steps": [
+        {
+          "signal_id": "tx_aapl_insider",
+          "credibility": 0.5493,
+          "direction": 1,
+          "posterior": 0.5493
+        },
+        {
+          "signal_id": "tx_aapl_analyst",
+          "credibility": 0.2274,
+          "direction": 1,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_competitor",
+          "credibility": 0.2052,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_supplier",
+          "credibility": 0.2319,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_aapl_regulator",
+          "credibility": 0.7214,
+          "direction": 1,
+          "posterior": 0.4816
+        },
+        {
+          "signal_id": "tx_aapl_journalist",
+          "credibility": 0.3428,
+          "direction": 1,
+          "posterior": 0.3264
+        },
+        {
+          "signal_id": "tx_aapl_fund",
+          "credibility": 0.7304,
+          "direction": 1,
+          "posterior": 0.5676
+        }
+      ]
+    },
+    "MSFT": {
+      "prior": 0.5,
+      "posterior": 0.2996,
+      "steps": [
+        {
+          "signal_id": "tx_msft_insider",
+          "credibility": 0.6212,
+          "direction": 1,
+          "posterior": 0.6212
+        },
+        {
+          "signal_id": "tx_msft_analyst",
+          "credibility": 0.2068,
+          "direction": 1,
+          "posterior": 0.2995
+        },
+        {
+          "signal_id": "tx_msft_competitor",
+          "credibility": 0.2738,
+          "direction": 1,
+          "posterior": 0.1388
+        },
+        {
+          "signal_id": "tx_msft_supplier",
+          "credibility": 0.3873,
+          "direction": 0,
+          "posterior": 0.1388
+        },
+        {
+          "signal_id": "tx_msft_regulator",
+          "credibility": 0.7775,
+          "direction": 1,
+          "posterior": 0.3603
+        },
+        {
+          "signal_id": "tx_msft_journalist",
+          "credibility": 0.2947,
+          "direction": -1,
+          "posterior": 0.5741
+        },
+        {
+          "signal_id": "tx_msft_fund",
+          "credibility": 0.7591,
+          "direction": -1,
+          "posterior": 0.2996
+        }
+      ]
+    },
+    "TSLA": {
+      "prior": 0.5,
+      "posterior": 0.1553,
+      "steps": [
+        {
+          "signal_id": "tx_tsla_insider",
+          "credibility": 0.4448,
+          "direction": 1,
+          "posterior": 0.4448
+        },
+        {
+          "signal_id": "tx_tsla_analyst",
+          "credibility": 0.3093,
+          "direction": 1,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_tsla_competitor",
+          "credibility": 0.1199,
+          "direction": 0,
+          "posterior": 0.264
+        },
+        {
+          "signal_id": "tx_tsla_supplier",
+          "credibility": 0.4916,
+          "direction": 1,
+          "posterior": 0.2576
+        },
+        {
+          "signal_id": "tx_tsla_regulator",
+          "credibility": 0.5664,
+          "direction": -1,
+          "posterior": 0.2098
+        },
+        {
+          "signal_id": "tx_tsla_journalist",
+          "credibility": 0.3615,
+          "direction": 1,
+          "posterior": 0.1307
+        },
+        {
+          "signal_id": "tx_tsla_fund",
+          "credibility": 0.4498,
+          "direction": -1,
+          "posterior": 0.1553
+        }
+      ]
+    },
+    "AMZN": {
+      "prior": 0.5,
+      "posterior": 0.4946,
+      "steps": [
+        {
+          "signal_id": "tx_amzn_insider",
+          "credibility": 0.5046,
+          "direction": 1,
+          "posterior": 0.5046
+        },
+        {
+          "signal_id": "tx_amzn_analyst",
+          "credibility": 0.1255,
+          "direction": 1,
+          "posterior": 0.1275
+        },
+        {
+          "signal_id": "tx_amzn_competitor",
+          "credibility": 0.3702,
+          "direction": 1,
+          "posterior": 0.0791
+        },
+        {
+          "signal_id": "tx_amzn_supplier",
+          "credibility": 0.2418,
+          "direction": 0,
+          "posterior": 0.0791
+        },
+        {
+          "signal_id": "tx_amzn_regulator",
+          "credibility": 0.5725,
+          "direction": 1,
+          "posterior": 0.1032
+        },
+        {
+          "signal_id": "tx_amzn_journalist",
+          "credibility": 0.1031,
+          "direction": -1,
+          "posterior": 0.5002
+        },
+        {
+          "signal_id": "tx_amzn_fund",
+          "credibility": 0.4944,
+          "direction": 1,
+          "posterior": 0.4946
+        }
+      ]
+    },
+    "NVDA": {
+      "prior": 0.5,
+      "posterior": 0.1747,
+      "steps": [
+        {
+          "signal_id": "tx_nvda_insider",
+          "credibility": 0.5152,
+          "direction": 1,
+          "posterior": 0.5152
+        },
+        {
+          "signal_id": "tx_nvda_analyst",
+          "credibility": 0.0947,
+          "direction": 1,
+          "posterior": 0.1
+        },
+        {
+          "signal_id": "tx_nvda_competitor",
+          "credibility": 0.3228,
+          "direction": 1,
+          "posterior": 0.0503
+        },
+        {
+          "signal_id": "tx_nvda_supplier",
+          "credibility": 0.2357,
+          "direction": 0,
+          "posterior": 0.0503
+        },
+        {
+          "signal_id": "tx_nvda_regulator",
+          "credibility": 0.5971,
+          "direction": -1,
+          "posterior": 0.0345
+        },
+        {
+          "signal_id": "tx_nvda_journalist",
+          "credibility": 0.2231,
+          "direction": -1,
+          "posterior": 0.1107
+        },
+        {
+          "signal_id": "tx_nvda_fund",
+          "credibility": 0.6296,
+          "direction": 1,
+          "posterior": 0.1747
+        }
+      ]
+    },
+    "JPM": {
+      "prior": 0.5,
+      "posterior": 0.1075,
+      "steps": [
+        {
+          "signal_id": "tx_jpm_insider",
+          "credibility": 0.3934,
+          "direction": 1,
+          "posterior": 0.3934
+        },
+        {
+          "signal_id": "tx_jpm_analyst",
+          "credibility": 0.5386,
+          "direction": 1,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_competitor",
+          "credibility": 0.2308,
+          "direction": 0,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_supplier",
+          "credibility": 0.1242,
+          "direction": 0,
+          "posterior": 0.4309
+        },
+        {
+          "signal_id": "tx_jpm_regulator",
+          "credibility": 0.4308,
+          "direction": 1,
+          "posterior": 0.3643
+        },
+        {
+          "signal_id": "tx_jpm_journalist",
+          "credibility": 0.3093,
+          "direction": 1,
+          "posterior": 0.2042
+        },
+        {
+          "signal_id": "tx_jpm_fund",
+          "credibility": 0.6805,
+          "direction": -1,
+          "posterior": 0.1075
+        }
+      ]
+    },
+    "XOM": {
+      "prior": 0.5,
+      "posterior": 0.0586,
+      "steps": [
+        {
+          "signal_id": "tx_xom_insider",
+          "credibility": 0.6985,
+          "direction": 1,
+          "posterior": 0.6985
+        },
+        {
+          "signal_id": "tx_xom_analyst",
+          "credibility": 0.266,
+          "direction": 1,
+          "posterior": 0.4564
+        },
+        {
+          "signal_id": "tx_xom_competitor",
+          "credibility": 0.3433,
+          "direction": 0,
+          "posterior": 0.4564
+        },
+        {
+          "signal_id": "tx_xom_supplier",
+          "credibility": 0.1757,
+          "direction": 1,
+          "posterior": 0.1518
+        },
+        {
+          "signal_id": "tx_xom_regulator",
+          "credibility": 0.3461,
+          "direction": 1,
+          "posterior": 0.0865
+        },
+        {
+          "signal_id": "tx_xom_journalist",
+          "credibility": 0.404,
+          "direction": 0,
+          "posterior": 0.0865
+        },
+        {
+          "signal_id": "tx_xom_fund",
+          "credibility": 0.3966,
+          "direction": 1,
+          "posterior": 0.0586
+        }
+      ]
+    },
+    "UNH": {
+      "prior": 0.5,
+      "posterior": 0.0458,
+      "steps": [
+        {
+          "signal_id": "tx_unh_insider",
+          "credibility": 0.51,
+          "direction": 1,
+          "posterior": 0.51
+        },
+        {
+          "signal_id": "tx_unh_analyst",
+          "credibility": 0.172,
+          "direction": 1,
+          "posterior": 0.1778
+        },
+        {
+          "signal_id": "tx_unh_competitor",
+          "credibility": 0.1982,
+          "direction": 0,
+          "posterior": 0.1778
+        },
+        {
+          "signal_id": "tx_unh_supplier",
+          "credibility": 0.2924,
+          "direction": 1,
+          "posterior": 0.082
+        },
+        {
+          "signal_id": "tx_unh_regulator",
+          "credibility": 0.3926,
+          "direction": 1,
+          "posterior": 0.0546
+        },
+        {
+          "signal_id": "tx_unh_journalist",
+          "credibility": 0.169,
+          "direction": 0,
+          "posterior": 0.0546
+        },
+        {
+          "signal_id": "tx_unh_fund",
+          "credibility": 0.5459,
+          "direction": -1,
+          "posterior": 0.0458
+        }
+      ]
+    },
+    "PG": {
+      "prior": 0.5,
+      "posterior": 0.0667,
+      "steps": [
+        {
+          "signal_id": "tx_pg_insider",
+          "credibility": 0.6872,
+          "direction": 1,
+          "posterior": 0.6872
+        },
+        {
+          "signal_id": "tx_pg_analyst",
+          "credibility": 0.3015,
+          "direction": 1,
+          "posterior": 0.4867
+        },
+        {
+          "signal_id": "tx_pg_competitor",
+          "credibility": 0.2009,
+          "direction": 1,
+          "posterior": 0.1925
+        },
+        {
+          "signal_id": "tx_pg_supplier",
+          "credibility": 0.1208,
+          "direction": 1,
+          "posterior": 0.0317
+        },
+        {
+          "signal_id": "tx_pg_regulator",
+          "credibility": 0.7751,
+          "direction": 1,
+          "posterior": 0.1014
+        },
+        {
+          "signal_id": "tx_pg_journalist",
+          "credibility": 0.4627,
+          "direction": -1,
+          "posterior": 0.1159
+        },
+        {
+          "signal_id": "tx_pg_fund",
+          "credibility": 0.353,
+          "direction": 1,
+          "posterior": 0.0667
+        }
+      ]
+    },
+    "BA": {
+      "prior": 0.5,
+      "posterior": 0.1804,
+      "steps": [
+        {
+          "signal_id": "tx_ba_insider",
+          "credibility": 0.8168,
+          "direction": 1,
+          "posterior": 0.8168
+        },
+        {
+          "signal_id": "tx_ba_analyst",
+          "credibility": 0.1434,
+          "direction": 1,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_competitor",
+          "credibility": 0.2642,
+          "direction": 0,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_supplier",
+          "credibility": 0.3169,
+          "direction": 0,
+          "posterior": 0.4274
+        },
+        {
+          "signal_id": "tx_ba_regulator",
+          "credibility": 0.329,
+          "direction": 1,
+          "posterior": 0.2679
+        },
+        {
+          "signal_id": "tx_ba_journalist",
+          "credibility": 0.2289,
+          "direction": 1,
+          "posterior": 0.098
+        },
+        {
+          "signal_id": "tx_ba_fund",
+          "credibility": 0.6695,
+          "direction": 1,
+          "posterior": 0.1804
+        }
+      ]
+    },
+    "T": {
+      "prior": 0.5,
+      "posterior": 0.1561,
+      "steps": [
+        {
+          "signal_id": "tx_t_insider",
+          "credibility": 0.5668,
+          "direction": 1,
+          "posterior": 0.5668
+        },
+        {
+          "signal_id": "tx_t_analyst",
+          "credibility": 0.5339,
+          "direction": 1,
+          "posterior": 0.5998
+        },
+        {
+          "signal_id": "tx_t_competitor",
+          "credibility": 0.4375,
+          "direction": 1,
+          "posterior": 0.5383
+        },
+        {
+          "signal_id": "tx_t_supplier",
+          "credibility": 0.2152,
+          "direction": 0,
+          "posterior": 0.5383
+        },
+        {
+          "signal_id": "tx_t_regulator",
+          "credibility": 0.423,
+          "direction": 1,
+          "posterior": 0.4608
+        },
+        {
+          "signal_id": "tx_t_journalist",
+          "credibility": 0.1505,
+          "direction": 1,
+          "posterior": 0.1315
+        },
+        {
+          "signal_id": "tx_t_fund",
+          "credibility": 0.5499,
+          "direction": 1,
+          "posterior": 0.1561
+        }
+      ]
+    },
+    "KO": {
+      "prior": 0.5,
+      "posterior": 0.5356,
+      "steps": [
+        {
+          "signal_id": "tx_ko_insider",
+          "credibility": 0.5069,
+          "direction": 1,
+          "posterior": 0.5069
+        },
+        {
+          "signal_id": "tx_ko_analyst",
+          "credibility": 0.447,
+          "direction": 1,
+          "posterior": 0.4538
+        },
+        {
+          "signal_id": "tx_ko_competitor",
+          "credibility": 0.4377,
+          "direction": 0,
+          "posterior": 0.4538
+        },
+        {
+          "signal_id": "tx_ko_supplier",
+          "credibility": 0.2171,
+          "direction": 1,
+          "posterior": 0.1873
+        },
+        {
+          "signal_id": "tx_ko_regulator",
+          "credibility": 0.5684,
+          "direction": 1,
+          "posterior": 0.2328
+        },
+        {
+          "signal_id": "tx_ko_journalist",
+          "credibility": 0.2418,
+          "direction": 0,
+          "posterior": 0.2328
+        },
+        {
+          "signal_id": "tx_ko_fund",
+          "credibility": 0.7917,
+          "direction": 1,
+          "posterior": 0.5356
+        }
+      ]
+    }
+  }
+}

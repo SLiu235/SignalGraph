@@ -1,0 +1,25 @@
+{
+  "run_id": "20260806T160153-42",
+  "stage": "graph",
+  "seed": 42,
+  "ontology_version": "1.0",
+  "graph_path": "/Users/dexter/Desktop/Projects/Quant/QuantKG/quant_signal_game/results/graph/graph.json",
+  "nodes": 352,
+  "edges": 1020,
+  "counts": {
+    "by_kind": {
+      "signal_type": 4,
+      "company": 12,
+      "player": 84,
+      "signal": 252
+    },
+    "by_relation": {
+      "has_source": 168,
+      "linked_to": 84,
+      "signal_access": 180,
+      "transmits": 84,
+      "instance_of": 252,
+      "about": 252
+    }
+  }
+}

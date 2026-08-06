@@ -1,0 +1,69 @@
+# quant_signal_game — central configuration hub
+# Every tunable parameter lives here so runs are re-runnable and reproducible.
+# Paths are resolved relative to the repo root (quant_signal_game/).
+
+# ---- global ----
+seed: 42                      # master RNG seed for all deterministic generation
+run_id: ""                    # empty -> auto-generated "{date}T{time}-{seed}" at build time
+verbose: true
+
+# ---- data ----
+data:
+  mode: synthetic             # synthetic (deterministic, offline) | edgar (live SEC)
+  num_companies: 12           # companies in the seed graph (synthetic mode)
+  num_players_per_company: 7  # insider, analyst, competitor, supplier, regulator, journalist, fund
+  price_history_len: 120      # synthetic daily prices per company
+  filings_per_company: 6      # synthetic filings (10-K / 8-K) per company
+  news_per_company: 8         # synthetic news/transcript snippets per company
+  signal_outcome_agree: 0.75  # P(costly transmitted signal agrees with latent outcome direction)
+  outcome_drift: 0.01         # per-day post-brief_day drift in the latent outcome direction
+  edgar:
+    user_agent: ""            # required by SEC; fill with "Name contact@example.com"
+    rate_limit_s: 0.1         # SEC requires >= 100ms between requests
+    submissions_url: "https://www.sec.gov/files/company_tickers.json"
+
+# ---- graph ----
+graph:
+  storage: json                # json (networkx serialized, deterministic) | neo4j (optional)
+  path: "results/graph/graph.json"   # serialized graph location
+  ontology_version: "1.0"
+
+# ---- signaling game ----
+signaling:
+  # sender types: (informed, aligned) priors, expressed as probabilities
+  type_priors:
+    informed_prior: 0.5        # P(sender is informed)
+    aligned_prior: 0.5         # P(sender is aligned with receiver objective)
+  # signal cost function parameters: cost = base_cost * cost_scale(sender_type)
+  cost:
+    cheap_talk_base: 0.02      # near-zero sender cost for commentary/social/media
+    costly_base: 2.0           # certified filing revision, enforcement, disclosed position
+    informed_cost_mult: 0.4    # informed senders bear lower marginal cost (they know the truth)
+    misaligned_cost_mult: 1.0
+  # receiver strategy: threshold on posterior credibility
+  receiver:
+    belief_threshold: 0.6      # credibility above -> treat signal as separating/credible
+    precision_prior: 0.8       # reliability receiver assigns to a separating signal
+  equilibrium:
+    tolerance: 1e-6            # convergence tolerance for equilibrium characterization
+
+# ---- extraction / synthesis ----
+extraction:
+  retrieval:
+    top_k_subgraph: 30         # max nodes in retrieved subgraph
+    top_k_passages: 8          # max retrieved evidence passages
+  embed:
+    backend: tfidf             # tfidf (offline, deterministic) | openai | sentence-transformers
+  synthesis:
+    llm_backend: mock          # mock (rule-based, deterministic) | openai
+    model: ""                  # e.g. "gpt-4o-mini"; empty for mock
+    max_tokens: 1200
+    temperature: 0.0
+    cite_required: true        # uncited claims are dropped / marked low-confidence
+
+# ---- evaluation ----
+evaluation:
+  brief_day: 40               # decision brief produced at day t; uses only data <= t
+  outcome_window_days: 30      # brief at t scored against outcomes in (t, t+window]
+  price_impact_threshold: 0.02 # |return| above this counts as a realized signal impact
+  metrics: [credibility, posterior_confidence, price_impact, citation_precision]

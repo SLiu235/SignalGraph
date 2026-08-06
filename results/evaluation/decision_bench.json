@@ -1,0 +1,221 @@
+{
+  "run_id": "20260806T160154-42",
+  "n_briefs": 12,
+  "direction_accuracy": 0.75,
+  "confidence_weighted_accuracy": 0.8550219876868954,
+  "rows": [
+    {
+      "entity": "AAPL",
+      "brief_time": 40,
+      "realized_return": 0.11044803525523328,
+      "predicted_impact": 0.7304,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.5676
+    },
+    {
+      "entity": "AMZN",
+      "brief_time": 40,
+      "realized_return": 0.5074504815555152,
+      "predicted_impact": 0.5725,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.4946
+    },
+    {
+      "entity": "BA",
+      "brief_time": 40,
+      "realized_return": 0.3004090676666098,
+      "predicted_impact": 0.8168,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.1804
+    },
+    {
+      "entity": "JPM",
+      "brief_time": 40,
+      "realized_return": -0.17871685820287753,
+      "predicted_impact": -0.6805,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.1075
+    },
+    {
+      "entity": "KO",
+      "brief_time": 40,
+      "realized_return": 0.6253443526170797,
+      "predicted_impact": 0.7917,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.5356
+    },
+    {
+      "entity": "MSFT",
+      "brief_time": 40,
+      "realized_return": -0.18875086266390606,
+      "predicted_impact": 0.7775,
+      "direction_hit": false,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.2996
+    },
+    {
+      "entity": "NVDA",
+      "brief_time": 40,
+      "realized_return": 0.21415607985480944,
+      "predicted_impact": 0.6296,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.1747
+    },
+    {
+      "entity": "PG",
+      "brief_time": 40,
+      "realized_return": -0.393840815441336,
+      "predicted_impact": 0.7751,
+      "direction_hit": false,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.0667
+    },
+    {
+      "entity": "T",
+      "brief_time": 40,
+      "realized_return": 0.11173526708201398,
+      "predicted_impact": 0.5668,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.1561
+    },
+    {
+      "entity": "TSLA",
+      "brief_time": 40,
+      "realized_return": -0.1740553406724189,
+      "predicted_impact": -0.5664,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.1553
+    },
+    {
+      "entity": "UNH",
+      "brief_time": 40,
+      "realized_return": 0.3530582900121668,
+      "predicted_impact": -0.5459,
+      "direction_hit": false,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.0458
+    },
+    {
+      "entity": "XOM",
+      "brief_time": 40,
+      "realized_return": 0.2009507346585997,
+      "predicted_impact": 0.6985,
+      "direction_hit": true,
+      "no_lookahead_violations": [],
+      "posterior_confidence": 0.0586
+    }
+  ],
+  "no_lookahead_violations": [],
+  "per_metric_failures": {
+    "price_impact": [],
+    "credibility": [],
+    "posterior_confidence": [],
+    "citation_precision": {
+      "AAPL": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "AMZN": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "BA": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "JPM": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "KO": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "MSFT": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "NVDA": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "PG": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "T": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "TSLA": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "UNH": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      },
+      "XOM": {
+        "total_claims": 8,
+        "cited_claims": 8,
+        "uncited_claims": 0,
+        "hallucination_count": 0,
+        "citation_precision": 1.0,
+        "failure": false
+      }
+    }
+  },
+  "citation_summary": "96 claims, 96 cited, 0 uncited (low-confidence), 0 hallucinated, 0 briefs with failures; citation precision 1.000"
+}
