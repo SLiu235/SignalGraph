@@ -17,6 +17,7 @@ env/
 
 # ---- generated run artifacts (reproducible via `make all`) ----
 results/
+docs/
 
 # ---- OS / editor ----
 .DS_Store
