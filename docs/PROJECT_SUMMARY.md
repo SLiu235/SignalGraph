@@ -1,3 +1,5 @@
+> ORIGINAL PROJECT NARRATIVE — retained for context. These claims predate the September 7, 2026 review. Use the reviewed README, HIRING_REVIEW.md and validation/validation.json for current status.
+
 # PROJECT_SUMMARY — Handoff document for quant_signal_game
 
 This document is the canonical handoff for a fresh researcher or LLM to continue the
@@ -32,8 +34,10 @@ quant_signal_game/
 ├── graph/                      # LAYER 1: knowledge graph
 │   ├── ontology.py             #   entities + relations + signal-access model
 │   ├── graph_io.py             #   deterministic JSON serialization of the MultiDiGraph
-│   ├── build_graph.py          #   assemble seed + sources -> graph.json + manifest
-│   └── update.py               #   incremental updates (new signals/events/players)
+│   ├── storage.py              #   backend dispatch (json | neo4j) — open_graph/save_graph
+│   ├── neo4j_backend.py        #   Neo4j storage backend (sync, incremental upsert, load-back)
+│   ├── build_graph.py          #   assemble seed + sources -> graph + manifest
+│   └── update.py               #   incremental updates (real event ingestion -> graph)
 ├── signaling/                  # LAYER 3: the sender-receiver game
 │   ├── types.py                #   sender types, signal types, cost function
 │   ├── signal_game.py          #   game: strategies, equilibria (pooling/separating),
@@ -46,11 +50,12 @@ quant_signal_game/
 ├── evaluation/                 # cross-layer scoring
 │   ├── decision_bench.py       #   score briefs vs realized outcomes (no lookahead)
 │   └── citation_check.py       #   per-metric citation/hallucination failure summaries
-├── data/                       # data sources + seed
+├── data/                       # data sources + seed + ingestion
 │   ├── seed_graph.py           #   deterministic companies + players + signal-access
+│   ├── ingest.py               #   cursor-based incremental event ingestion (feed/news/edgar)
 │   ├── fetch_filings.py        #   SEC EDGAR (live) with synthetic fallback
 │   ├── fetch_news.py           #   news/transcripts (synthetic, deterministic)
-│   └── _edgar.py               #   minimal live SEC retrieval stub
+│   └── _edgar.py               #   live SEC EDGAR (full + incremental, cursor-filtered)
 ├── results/                    # decision briefs, credibility, posteriors, evaluation
 ├── docs/PROJECT_SUMMARY.md     # this document
 ├── README.md                   # research framing, architecture, usage, limitations
@@ -73,12 +78,19 @@ Layer mapping: `graph/*` = Layer 1 (players + companies + signal-access); `extra
 - **Live mode (`data.mode: edgar`)** — `data/_edgar.py` attempts SEC EDGAR retrieval
   (requires `requests` and a descriptive `data.edgar.user_agent`; SEC mandates ≥100ms
   between requests). Any failure falls back to synthetic so the pipeline never blocks.
+- **Incremental ingestion (`data.ingest`)** — `graph/update.py` polls the configured
+  sources (`data/ingest.py`) and applies only NEW events. The cursor
+  (`data.ingest.cursor_path`) records per-source progress: for live `edgar` it tracks
+  seen accession numbers + last filed date; the deterministic `feed`/`news` sources emit
+  a new batch per poll. Feed timestamps start at `feed_start_day` (70), above
+  `evaluation.brief_day` (40), so ingested events stay strictly post-brief.
 
 ### Run steps
 ```bash
 cd quant_signal_game
-python3 -m venv ../.venv && ../.venv/bin/python -m pip install -r requirements.txt
-make graph        # stage 1: build graph
+python3 -m venv .venv && ./.venv/bin/python -m pip install -r requirements.txt
+make graph        # stage 1: build graph (json or neo4j per graph.storage)
+make update       # stage 1b: incremental event ingestion -> graph
 make signaling    # stage 2: game + belief update
 make extract      # stage 3: decision briefs
 make evaluate     # stage 4: benchmark + citation checks
@@ -108,13 +120,17 @@ fund (transmit costly `disclosure` + cheap `commentary`). `ROLE_CREDIBILITY_PRIO
 a base prior per role (regulator highest, journalist lowest). Per-player variation is
 jittered deterministically in `seed_graph.py` so credibility scores are non-degenerate.
 
-### 4.2 Graph build/update
+### 4.2 Graph build/update/storage
 `build_graph.py` generates seed records, instantiates every entity and relation (each
 player's `access_profile` becomes `signal_access` edges), validates
 (`validate()` — every `transmits` edge must be backed by a `signal_access.can_transmit`),
-and serializes to `results/graph/graph.json` with a reproducibility manifest.
-`update.py` loads the graph and applies incremental batches of new signals/events/players
-(an `Updater` class), validating and re-serializing.
+and persists via `graph/storage.py` (a JSON snapshot is always written; Neo4j is synced
+when `graph.storage=neo4j`) with a reproducibility manifest that records the backend.
+`update.py` opens the configured backend, ingests only new events (`data/ingest.py`,
+cursor-based), applies them through the ontology `Updater` with validation, and
+re-persists. `graph/neo4j_backend.py` maps the MultiDiGraph to Neo4j: node label = kind,
+relationship type = relation, `id`/`eid` unique properties make writes idempotent MERGE
+upserts, and complex attrs are JSON-sentinel encoded/decoded so round-trips are faithful.
 
 ### 4.3 Retrieval (`extraction/retrieve.py`)
 `retrieve_subgraph(G, ticker, t)` returns the company node, every linked player and their
@@ -191,10 +207,18 @@ drift is the outcome realized strictly after `t`.
 
 ## 5. Engineering decisions and why
 
-- **networkx-in-JSON graph (not a live graph DB).** Reproducible, deterministic, zero
-  external infra, ideal for offline research runs; ontology is DB-agnostic so Neo4j can
-  be added. The graph is a **directed** `MultiDiGraph` — direction encodes who transmits
-  to whom, essential for the signaling semantics.
+- **networkx-in-JSON graph as the default backend.** Reproducible, deterministic, zero
+  external infra, ideal for offline research runs. The ontology is backend-agnostic and a
+  **Neo4j backend** (`graph/neo4j_backend.py`, `graph.storage=neo4j`) is implemented behind
+  the same `graph/storage.py` dispatch; a JSON snapshot is always written alongside so
+  offline stages and reproducibility checks keep working. The graph is a **directed**
+  `MultiDiGraph` — direction encodes who transmits to whom, essential for the signaling
+  semantics.
+- **Incremental ingestion is cursor-based.** `data/ingest.py` persists a per-source
+  watermark (`results/ingest/cursor.json`) so each `update` run applies only NEW events;
+  live `edgar` tracks seen accession numbers + last filed date, deterministic feeds emit
+  one batch per poll. Feed timestamps start above `evaluation.brief_day`, so ingested
+  events never leak into existing briefs (no-lookahead preserved).
 - **No-lookahead evaluation is structural.** Retrieval filters `timestamp <= t` at the
   graph level; synthesis only uses those; evaluation scores against outcomes strictly
   after `t`. This makes the artifact honest and the benchmark meaningful.
@@ -239,8 +263,12 @@ Bayesian accumulation of evidence direction × credibility, not a trading recomm
 
 ## 7. Known limitations
 
-- Synthetic data is a stand-in; live EDGAR is a stub that needs a real user-agent and
-  parsing hardening.
+- Synthetic data is a stand-in; live EDGAR ingestion requires a real user-agent
+  (`data.edgar.user_agent`) and currently parses submission metadata only (documents,
+  not filing text) — see §8.
+- The Neo4j backend (`graph.storage=neo4j`) is implemented and code-tested, but an
+  end-to-end integration test against a running database is left for an environment with
+  a live Neo4j instance (the backend raises a clear error if the DB is unreachable).
 - The synthetic outcome is coupled to a latent direction (see §4.7); the realized-return
   sign is predictable from credible signals, so the benchmark measures signal-reading, not
   market noise. Direction accuracy ≈ `signal_outcome_agree` (0.75 default), which bounds
@@ -258,11 +286,14 @@ Bayesian accumulation of evidence direction × credibility, not a trading recomm
 |---|---|
 | `graph/ontology.py` | **complete** — entities, relations, signal-access model |
 | `graph/graph_io.py` | **complete** — deterministic JSON (de)serialization |
-| `graph/build_graph.py` | **complete** — assembles + validates + manifest |
-| `graph/update.py` | **complete** — incremental batch updates |
+| `graph/storage.py` | **complete** — backend dispatch (json | neo4j) |
+| `graph/neo4j_backend.py` | **complete** — Neo4j sync / incremental upsert / load-back (code-tested; live-DB integration pending) |
+| `graph/build_graph.py` | **complete** — assembles + validates + manifest (backend-aware) |
+| `graph/update.py` | **complete** — real incremental event ingestion -> configured backend |
 | `data/seed_graph.py` | **complete** — deterministic seed (companies+players+access); synthetic outcome coupled to latent direction |
-| `data/fetch_filings.py` / `fetch_news.py` | **complete** — synthetic default; live stub |
-| `data/_edgar.py` | **stub** — minimal live SEC, needs UA + parsing hardening |
+| `data/ingest.py` | **complete** — cursor-based incremental ingestion (feed/news/edgar) |
+| `data/fetch_filings.py` / `fetch_news.py` | **complete** — synthetic default; live path via `data/_edgar.py` |
+| `data/_edgar.py` | **complete** — live SEC full + cursor-based incremental fetch (needs user_agent; metadata-only parsing) |
 | `signaling/types.py` | **complete** — types + cost function |
 | `signaling/signal_game.py` | **complete** — equilibria + game-derived credibility |
 | `signaling/belief_update.py` | **complete** — sequential Bayes posterior |
@@ -273,8 +304,9 @@ Bayesian accumulation of evidence direction × credibility, not a trading recomm
 | `evaluation/citation_check.py` | **complete** — per-metric failure summaries |
 | `docs/PROJECT_SUMMARY.md` / `README.md` | **complete** |
 
-Left to do: Neo4j backend, real LLM synthesis + citation evaluation, real EDGAR hardening,
-semi-separating equilibrium, comparative statics, real sentiment/embedding backends.
+Left to do: live-Neo4j integration test, real LLM synthesis + citation evaluation, EDGAR
+document-text parsing, semi-separating equilibrium, comparative statics, real
+sentiment/embedding backends.
 
 ## 9. Config knobs and their locations (`config/config.yaml`)
 
@@ -283,7 +315,11 @@ semi-separating equilibrium, comparative statics, real sentiment/embedding backe
   `news_per_company` — dataset size. `data.signal_outcome_agree`,
   `data.outcome_drift` — the synthetic outcome coupling (§4.7). `data.mode` — `synthetic`
   | `edgar`; `data.edgar.user_agent`, `rate_limit_s`, `submissions_url`.
-- `graph.storage` (`json` | `neo4j`), `graph.path` — graph output.
+- `data.ingest.{enabled, sources, cursor_path, feed_events_per_poll, feed_start_day,
+  feed_step_days}` — incremental event ingestion (feed/news deterministic; edgar live).
+- `graph.storage` (`json` | `neo4j`), `graph.path` — graph output;
+  `graph.neo4j.{uri, user, password, database, encrypted}` — live backend connection
+  (password may come from `NEO4J_PASSWORD`).
 - `signaling.type_priors.{informed_prior, aligned_prior}` — sender-type priors.
 - `signaling.cost.{cheap_talk_base, costly_base, informed_cost_mult, misaligned_cost_mult}`
   — the cost function; tuning these changes which signals separate.

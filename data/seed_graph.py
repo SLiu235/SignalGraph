@@ -12,8 +12,8 @@ from __future__ import annotations
 
 import numpy as np
 
-from ..graph import ontology as O
-from ..common import get_rng
+from common import get_rng
+from graph import ontology as O
 
 # Fixed base for per-ticker outcome-direction RNG so `y` is reproducible but NOT
 # computable from the public ticker string alone (the benchmark's ground truth is

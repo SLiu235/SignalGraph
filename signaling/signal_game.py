@@ -23,11 +23,10 @@ from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from ..common import load_config, log, write_json, RESULTS_DIR, get_rng
-from ..graph import graph_io, ontology as O
-from ..graph.ontology import SIGNAL_ACCESS, SIGNAL_TYPE, PLAYER
+from common import DEFAULT_CONFIG_PATH, RESULTS_DIR, load_config, log, write_json
+from graph import ontology as O, storage
+from graph.ontology import SIGNAL_ACCESS
 from . import types as T
 
 BENEFIT = 1.0  # normalized receiver payoff for treating the sender as high type
@@ -136,15 +135,12 @@ def score_signals(G, cfg: dict) -> list[dict]:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="signaling")
     args = ap.parse_args(argv)
 
     cfg = load_config(args.config)
-    gpath = Path(cfg["graph"]["path"])
-    if not gpath.is_absolute():
-        gpath = Path(cfg["paths"]["root"]) / gpath
-    G = graph_io.load_graph(gpath)
+    G = storage.open_graph(cfg)
 
     results = score_signals(G, cfg)
     out = RESULTS_DIR / "signaling"

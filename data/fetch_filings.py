@@ -12,9 +12,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from ..common import load_config, log
-from ..graph import ontology as O
-from ..data import seed_graph
+from common import DEFAULT_CONFIG_PATH, load_config, log
+from data import seed_graph
 
 
 def fetch_filings(cfg: dict, companies: list) -> list:
@@ -24,7 +23,7 @@ def fetch_filings(cfg: dict, companies: list) -> list:
             from . import _edgar
             return _edgar.fetch_live(cfg, companies)
         except Exception as e:  # network / parsing / UA missing
-            log(cfg, f"EDGAR live fetch failed ({e}); falling back to synthetic")
+            raise RuntimeError("EDGAR failed; choose synthetic explicitly for a fixture") from e
     # synthetic: reuse the deterministic seed filing generator
     _, _, signals = seed_graph.build_seed_records(cfg)
     return [s for s in signals if s.source == "filing"]
@@ -32,7 +31,7 @@ def fetch_filings(cfg: dict, companies: list) -> list:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     filings = fetch_filings(cfg, [])

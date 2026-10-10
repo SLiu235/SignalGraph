@@ -9,7 +9,7 @@ from pathlib import Path
 
 import networkx as nx
 
-from ..common import ensure_dir, write_json
+from common import ensure_dir, write_json
 
 
 def graph_to_json(G: nx.MultiGraph) -> dict:

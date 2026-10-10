@@ -15,6 +15,7 @@ import yaml
 
 PKG_ROOT = Path(__file__).resolve().parent
 RESULTS_DIR = PKG_ROOT / "results"
+DEFAULT_CONFIG_PATH = PKG_ROOT / "config" / "config.yaml"
 
 
 def load_config(path: str | Path) -> dict:
@@ -74,5 +75,5 @@ def day_of(timestamp: str) -> int:
         try:
             return int(timestamp[1:])
         except ValueError:
-            return 0
-    return 0
+            raise ValueError("Synthetic D#### timestamp required; ISO timestamps need an explicit availability adapter")
+    raise ValueError("Synthetic D#### timestamp required; ISO timestamps need an explicit availability adapter")

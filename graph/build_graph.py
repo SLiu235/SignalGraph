@@ -9,12 +9,11 @@ from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from ..common import load_config, log, write_json, RESULTS_DIR
-from ..graph import ontology as O
-from ..graph import graph_io
-from ..data import seed_graph
+from common import DEFAULT_CONFIG_PATH, RESULTS_DIR, load_config, log, write_json
+from graph import ontology as O
+from graph import storage
+from data import seed_graph
 
 
 def assemble_graph(cfg: dict):
@@ -51,27 +50,26 @@ def assemble_graph(cfg: dict):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(description="build knowledge graph")
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="graph")
     args = ap.parse_args(argv)
 
     cfg = load_config(args.config)
     G = assemble_graph(cfg)
 
-    out = Path(cfg["graph"]["path"])
-    if not out.is_absolute():
-        out = Path(cfg["paths"]["root"]) / out
-    graph_io.save_graph(G, out)
+    storage.save_graph(G, cfg)
 
     manifest = {
         "run_id": cfg["run_id"], "stage": args.stage, "seed": cfg["seed"],
-        "ontology_version": O.ONTOLOGY_VERSION, "graph_path": str(out),
+        "ontology_version": O.ONTOLOGY_VERSION,
+        "graph_storage": storage.storage_backend(cfg),
+        "graph_path": str(storage.resolve_graph_path(cfg)),
         "nodes": G.number_of_nodes(), "edges": G.number_of_edges(),
         "counts": _counts(G),
     }
     write_json(RESULTS_DIR / "graph" / "manifest.json", manifest)
-    log(cfg, f"saved graph -> {out}")
-    log(cfg, f"manifest -> {RESULTS_DIR / 'graph' / 'manifest.json'}")
+    log(cfg, f"saved graph -> {storage.resolve_graph_path(cfg)} "
+             f"(storage={storage.storage_backend(cfg)})")
     return 0
 
 

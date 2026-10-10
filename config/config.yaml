@@ -21,12 +21,25 @@ data:
     user_agent: ""            # required by SEC; fill with "Name contact@example.com"
     rate_limit_s: 0.1         # SEC requires >= 100ms between requests
     submissions_url: "https://www.sec.gov/files/company_tickers.json"
+  ingest:                     # incremental event ingestion (graph/update.py, data/ingest.py)
+    enabled: true
+    sources: [feed, news]     # feed/news = offline deterministic; edgar = live SEC (needs user_agent)
+    cursor_path: "results/ingest/cursor.json"   # per-source watermark of how far ingestion has advanced
+    feed_events_per_poll: 3   # signals+events emitted per ingest poll, per source
+    feed_start_day: 70        # first feed timestamp (>= evaluation.brief_day keeps no-lookahead)
+    feed_step_days: 5         # day spacing between feed events
 
 # ---- graph ----
 graph:
-  storage: json                # json (networkx serialized, deterministic) | neo4j (optional)
-  path: "results/graph/graph.json"   # serialized graph location
+  storage: json                # json (networkx serialized, deterministic) | neo4j (live DB)
+  path: "results/graph/graph.json"   # serialized graph snapshot (always written; neo4j is the live copy)
   ontology_version: "1.0"
+  neo4j:                       # used when graph.storage == neo4j (graph/neo4j_backend.py)
+    uri: "bolt://localhost:7687"
+    user: "neo4j"
+    password: ""               # set here or via NEO4J_PASSWORD env; never commit real secrets
+    database: "neo4j"
+    encrypted: false
 
 # ---- signaling game ----
 signaling:

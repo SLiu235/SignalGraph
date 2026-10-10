@@ -9,11 +9,11 @@ from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from ..common import load_config, log
-from ..graph import graph_io, ontology as O
-from ..graph.ontology import SIGNAL_ACCESS, LINKED_TO, ABOUT, HAS_SOURCE
+from common import DEFAULT_CONFIG_PATH, load_config, log
+from graph import storage
+from graph import ontology as O
+from graph.ontology import ABOUT, HAS_SOURCE, LINKED_TO, SIGNAL_ACCESS
 from . import embed
 
 DAY_PREFIX = "D"
@@ -99,13 +99,10 @@ def retrieve_passages(G, ticker: str, t: int, query: str, top_k: int) -> list[di
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
-    gpath = Path(cfg["graph"]["path"])
-    if not gpath.is_absolute():
-        gpath = Path(cfg["paths"]["root"]) / gpath
-    G = graph_io.load_graph(gpath)
+    G = storage.open_graph(cfg)
     sub = retrieve_subgraph(G, "AAPL", cfg["evaluation"]["brief_day"])
     log(cfg, f"retrieved AAPL subgraph: {len(sub['players'])} players, "
              f"{len(sub['signals'])} signals <= t")

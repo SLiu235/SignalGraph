@@ -4,7 +4,8 @@ networkx>=3.1
 numpy>=1.26
 pandas>=2.0
 pyyaml>=6.0
+neo4j>=5.0             # Neo4j driver — live graph backend (graph.storage=neo4j)
 # Optional live-SEC / LLM paths (not required for the synthetic default):
 #   openai>=1.0        # LLM synthesis (extraction.synthesis.llm_backend=openai)
-#   requests>=2.31     # SEC EDGAR live fetch (data.mode=edgar)
+#   requests>=2.31     # SEC EDGAR live fetch (data.mode=edgar, data.ingest sources=[edgar])
 #   scikit-learn       # optional embedding backend

@@ -43,8 +43,12 @@ This is a **research / decision-support artifact**, not a trading signal.
    (networkx `MultiDiGraph`, serialized to JSON). Company nodes carry fundamentals,
    filings, events, price history; player nodes carry identity, role, credibility prior,
    and **signal-access edges** (`signal_access` player→signal_type) encoding
-   `can_observe` / `can_transmit` / `transmit_cost`. Incremental updates arrive via
-   `graph/update.py`.
+   `can_observe` / `can_transmit` / `transmit_cost`. Two storage backends behind the same
+   ontology (`graph/graph_io.py` + `graph/storage.py`): the reproducible **JSON** snapshot
+   (default, offline) and a live **Neo4j** backend (`graph/neo4j_backend.py`,
+   `graph.storage=neo4j`). Incremental updates arrive via `graph/update.py`, which ingests
+   new events from `data/ingest.py` (live SEC EDGAR or deterministic feeds) and applies
+   them incrementally.
 2. **Signal-extraction & synthesis.** `extraction/` retrieves the relevant subgraph
    (the company, the transmitting players, their signal-access edges) plus evidence
    passages (filings/news), and synthesizes a **cited decision brief** — the evidence,
@@ -61,11 +65,13 @@ This is a **research / decision-support artifact**, not a trading signal.
 ## Usage
 
 ```bash
-cd quant_signal_game
+# run from the repo root (the project is a flat package: graph/, signaling/, ...)
 python3 -m venv ../.venv
 ../.venv/bin/python -m pip install -r requirements.txt
 
 make graph        # stage 1: build the knowledge graph (players + companies + signal-access)
+make update       # stage 1b: incremental event ingestion (new filings/news/events -> graph)
+make ingest       # ingest only: fetch + advance the cursor, without touching the graph
 make signaling    # stage 2: sender-receiver game, equilibria, Bayesian belief update
 make extract      # stage 3: retrieve + cited decision brief per entity
 make evaluate     # stage 4: no-lookahead benchmark + citation/hallucination checks
@@ -73,8 +79,34 @@ make all          # run the full pipeline end-to-end
 ```
 
 All parameters are in `config/config.yaml` (seeds, data mode, game costs, priors,
-retrieval knobs, evaluation window). Every stage logs its `run_id` and is re-runnable;
-synthetic data is seeded so offline runs reproduce exactly.
+retrieval knobs, evaluation window, graph storage backend, ingest sources). Every stage
+logs its `run_id` and is re-runnable; synthetic data is seeded so offline runs reproduce
+exactly.
+
+## Neo4j backend & incremental ingestion
+
+The knowledge graph supports two storage backends behind the same ontology, selected by
+`graph.storage`:
+
+- **`json`** (default): networkx `MultiDiGraph` serialized deterministically to
+  `graph.path` (`graph/graph_io.py`). Zero external infra, bit-for-bit reproducible.
+- **`neo4j`**: live Neo4j graph via the `neo4j` driver (`graph/neo4j_backend.py`). Node
+  label = entity kind, relationship type = relation, `id`/`eid` unique properties make
+  writes idempotent MERGE upserts; complex attrs (fundamentals, price history) are
+  JSON-encoded with a sentinel and decoded on read, so round-trips are faithful. A JSON
+  snapshot of the same graph is always written alongside. Configure `graph.neo4j.{uri,
+  user, password, database, encrypted}` (password may come from `NEO4J_PASSWORD`). If the
+  DB is unreachable the backend raises a clear error — it never silently degrades.
+
+**Real incremental event ingestion** (`graph/update.py` + `data/ingest.py`): each run
+polls the configured ingest sources (`data.ingest.sources`) and applies **only new**
+events. A per-source cursor (`data.ingest.cursor_path`, default
+`results/ingest/cursor.json`) records how far ingestion has advanced — for the live
+`edgar` source it tracks seen accession numbers + last filed date; the deterministic
+`feed`/`news` sources emit a new batch per poll. Feed timestamps start at
+`data.ingest.feed_start_day` (default 70), above `evaluation.brief_day` (40), so ingested
+events stay strictly post-brief and never leak into existing decision briefs
+(no-lookahead preserved). `--dry-run` fetches but does not persist or advance the cursor.
 
 ## What the default run produces
 
@@ -99,22 +131,25 @@ produces, under `results/`:
 
 ## Limitations
 
-- Default data is **synthetic and deterministic**; live SEC EDGAR retrieval is a
-  best-effort stub (`data/_edgar.py`) that falls back to synthetic.
+- Default data is **synthetic and deterministic**; live SEC EDGAR retrieval is
+  best-effort (`data/_edgar.py`) and requires a descriptive `data.edgar.user_agent`.
+  Ingestion supports live EDGAR incrementally, but the offline default uses
+  deterministic feeds so runs reproduce exactly.
 - The synthetic price outcome is coupled to a latent per-company direction (`data.signal_outcome_agree`,
   `data.outcome_drift`) so the decision benchmark measures signal-reading, not noise; accuracy is
   bounded by that synthetic signal-to-outcome reliability.
 - LLM synthesis defaults to a **mock (rule-based) backend**; an `openai` backend can be
   wired in via `config` but is not required for the offline default.
-- The graph backend is networkx-in-JSON (reproducible, no external DB); a Neo4j backend
-  could be added behind the same ontology.
+- The graph backend defaults to **networkx-in-JSON** (reproducible, no external DB); a
+  **Neo4j** backend (`graph.storage=neo4j`) is implemented behind the same ontology but is
+  opt-in and requires a running Neo4j instance.
 - Sentiment direction for the Bayes update is a crude deterministic word heuristic —
   a research placeholder, not a trained NLP model.
 
 ## What I'd do next
 
-- Add a Neo4j backend and real incremental event ingestion.
 - Wire a real LLM synthesis backend and evaluate citation precision against a gold set.
 - Calibrate the cost function / priors against observed price reactions.
 - Add a semi-separating equilibrium regime and comparative-static sensitivity analysis.
-- See `docs/PROJECT_SUMMARY.md` for a full handoff and the state of each module.
+- Harden live EDGAR parsing (documents, not just submission metadata) and add a real
+  news/transcript provider as an ingest source.

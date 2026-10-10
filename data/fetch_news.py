@@ -9,9 +9,8 @@ import argparse
 import sys
 from pathlib import Path
 
-from ..common import load_config, log
-from ..graph import ontology as O
-from ..data import seed_graph
+from common import DEFAULT_CONFIG_PATH, load_config, log
+from data import seed_graph
 
 
 def fetch_news(cfg: dict, companies: list) -> list:
@@ -21,7 +20,7 @@ def fetch_news(cfg: dict, companies: list) -> list:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
     news = fetch_news(cfg, [])

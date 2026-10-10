@@ -1,20 +1,26 @@
 """
 graph.update — incremental updates to the knowledge graph as new filings,
-disclosures, and events arrive. Loads the existing graph, applies a batch of
-new signals/events, validates, and re-serializes. Designed so the live graph and
-the offline seed graph share the same ontology.
+disclosures, and events arrive.
+
+Real incremental event ingestion:
+  * Loads the existing graph from the configured backend (graph.storage),
+  * polls the ingest sources (data/ingest.py: edgar live, feed/news synthetic)
+    and pulls ONLY events new since the cursor,
+  * applies the batch through the ontology (validation included),
+  * re-persists to the configured backend(s).
+
+Designed so the live graph and the offline seed graph share the same ontology.
 """
 from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
 import networkx as nx
 
-from ..common import load_config, log, write_json, RESULTS_DIR
-from ..graph import ontology as O
-from ..graph import graph_io
+from common import DEFAULT_CONFIG_PATH, load_config, log
+from graph import ontology as O, storage
+from data import ingest as _ingest
 
 
 class Updater:
@@ -45,23 +51,34 @@ class Updater:
 
 
 def main(argv=None):
-    ap = argparse.ArgumentParser(description="incremental graph update")
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap = argparse.ArgumentParser(description="incremental graph update + event ingestion")
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="update")
+    ap.add_argument("--sources", default=None,
+                    help="comma-separated ingest sources to poll (default: all enabled)")
+    ap.add_argument("--dry-run", action="store_true", help="validate but do not persist")
     args = ap.parse_args(argv)
 
     cfg = load_config(args.config)
-    out = Path(cfg["graph"]["path"])
-    if not out.is_absolute():
-        out = Path(cfg["paths"]["root"]) / out
-
-    G = graph_io.load_graph(out)
+    G = storage.open_graph(cfg)
     upd = Updater(G)
-    issues = upd.apply_batch(signals=[], events=[])
-    log(cfg, f"update applied (no new events): nodes={G.number_of_nodes()} "
-             f"edges={G.number_of_edges()} issues={len(issues)}")
-    graph_io.save_graph(G, out)
-    log(cfg, f"graph re-serialized -> {out}")
+
+    sources = args.sources.split(",") if args.sources else None
+    signals, events = _ingest.ingest_new(cfg, sources_filter=sources, commit=not args.dry_run)
+    issues = upd.apply_batch(signals, events)
+
+    log(cfg, f"update applied: +{len(signals)} signals +{len(events)} events "
+             f"-> nodes={G.number_of_nodes()} edges={G.number_of_edges()} "
+             f"validation issues={len(issues)}")
+    if issues:
+        log(cfg, "validation WARNINGS:\n  " + "\n  ".join(issues))
+
+    if not args.dry_run:
+        storage.save_graph(G, cfg)
+        log(cfg, f"graph re-persisted -> {storage.resolve_graph_path(cfg)} "
+                 f"(storage={storage.storage_backend(cfg)})")
+    else:
+        log(cfg, "dry-run: graph not persisted")
     return 0
 
 

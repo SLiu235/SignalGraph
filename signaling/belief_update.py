@@ -21,7 +21,7 @@ import argparse
 import sys
 from pathlib import Path
 
-from ..common import load_config, log, write_json, RESULTS_DIR
+from common import DEFAULT_CONFIG_PATH, RESULTS_DIR, load_config, log, write_json
 
 
 def _direction(content: str) -> int:
@@ -54,14 +54,22 @@ def sequential_update(prior: float, signals: list[dict]) -> dict:
     """Accumulate signals (chronologically) into a posterior confidence trajectory."""
     posterior = prior
     steps = []
+    seen = set()
     for s in signals:
+        # One evidence item per issuer event; syndicated copies are not independent.
+        key = s.get("event_id") or " ".join(s.get("content", "").lower().split())
+        if key in seen:
+            continue
+        seen.add(key)
         d = _direction(s.get("content", ""))
         posterior = update_posterior(posterior, s["credibility"], d)
         steps.append({
             "signal_id": s.get("signal_id"), "credibility": s["credibility"],
             "direction": d, "posterior": round(posterior, 4),
         })
-    return {"prior": prior, "posterior": round(posterior, 4), "steps": steps}
+    return {"prior": prior, "posterior": round(posterior, 4), "steps": steps,
+            "interpretation": "heuristic sensitivity score, not a calibrated return probability",
+            "duplicates_removed": len(signals)-len(steps)}
 
 
 def build_confidence_report(credibility_records: dict, cfg: dict) -> dict:
@@ -71,7 +79,7 @@ def build_confidence_report(credibility_records: dict, cfg: dict) -> dict:
     so a brief produced at time t never updates on signals arriving after t. Signals
     strictly after brief_day are dropped before the sequential Bayes accumulation.
     Prior confidence = 0.5 (indifferent) unless overridden by config."""
-    from ..common import day_of
+    from common import day_of
     prior = cfg["evaluation"].get("prior_confidence", 0.5)
     brief_day = cfg["evaluation"]["brief_day"]
     from collections import defaultdict
@@ -91,11 +99,11 @@ def build_confidence_report(credibility_records: dict, cfg: dict) -> dict:
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="signaling")
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
-    from ..common import read_json
+    from common import read_json
     cred = read_json(RESULTS_DIR / "signaling" / "credibility.json")
     report = build_confidence_report(cred, cfg)
     write_json(RESULTS_DIR / "signaling" / "posterior.json", report)

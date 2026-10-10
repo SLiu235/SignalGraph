@@ -13,12 +13,11 @@ from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from ..common import load_config, log, write_json, read_json, RESULTS_DIR
-from ..graph import graph_io
-from ..signaling.belief_update import _direction
-from ..extraction import retrieve
+from common import DEFAULT_CONFIG_PATH, RESULTS_DIR, load_config, log, read_json, write_json
+from extraction import retrieve
+from graph import storage
+from signaling.belief_update import _direction
 from . import citation_check
 
 DAY_PREFIX = "D"
@@ -69,9 +68,7 @@ def score_brief(ticker: str, brief: dict, G, cfg) -> dict:
 
 
 def run_benchmark(cfg):
-    G = graph_io.load_graph(Path(cfg["graph"]["path"])
-                            if Path(cfg["graph"]["path"]).is_absolute()
-                            else Path(cfg["paths"]["root"]) / cfg["graph"]["path"])
+    G = storage.open_graph(cfg)
     briefs = read_json(RESULTS_DIR / "briefs" / "decision_briefs.json")
     rows = [score_brief(t, b, G, cfg) for t, b in briefs["briefs"].items()]
 
@@ -101,7 +98,7 @@ def run_benchmark(cfg):
             "credibility": [],  # populated by citation/signaling layers
             "posterior_confidence": [r["entity"] for r in rows
                                      if r["posterior_confidence"] is None],
-            "citation_precision": citation["per_metric"]["citation_precision"],
+            "citation_coverage": citation["per_metric"]["citation_coverage"],
         },
         "citation_summary": citation["summary"],
     }
@@ -119,7 +116,7 @@ def run_benchmark(cfg):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="evaluate")
     args = ap.parse_args(argv)
     cfg = load_config(args.config)

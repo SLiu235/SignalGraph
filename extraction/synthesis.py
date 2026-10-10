@@ -13,10 +13,9 @@ from __future__ import annotations
 
 import argparse
 import sys
-from pathlib import Path
 
-from ..common import load_config, log, write_json, read_json, RESULTS_DIR
-from ..graph import graph_io
+from common import DEFAULT_CONFIG_PATH, RESULTS_DIR, load_config, log, read_json, write_json
+from graph import storage
 from . import retrieve
 
 
@@ -91,6 +90,8 @@ def synthesize_company(G, cfg, ticker: str, t: int, credibility: dict, posterior
 
 
 def synthesize_all(G, cfg):
+    if cfg["extraction"]["synthesis"].get("llm_backend", "mock") != "mock":
+        raise ValueError("Only mock synthesis is implemented; no silent backend substitution")
     t = cfg["evaluation"]["brief_day"]
     cred = read_json(RESULTS_DIR / "signaling" / "credibility.json")
     post = read_json(RESULTS_DIR / "signaling" / "posterior.json")
@@ -105,15 +106,12 @@ def synthesize_all(G, cfg):
 
 def main(argv=None):
     ap = argparse.ArgumentParser()
-    ap.add_argument("--config", default=str(Path("quant_signal_game/config/config.yaml")))
+    ap.add_argument("--config", default=str(DEFAULT_CONFIG_PATH))
     ap.add_argument("--stage", default="extract")
     args = ap.parse_args(argv)
     cfg = load_config(args.config)
 
-    gpath = Path(cfg["graph"]["path"])
-    if not gpath.is_absolute():
-        gpath = Path(cfg["paths"]["root"]) / gpath
-    G = graph_io.load_graph(gpath)
+    G = storage.open_graph(cfg)
 
     out = synthesize_all(G, cfg)
     write_json(RESULTS_DIR / "briefs" / "decision_briefs.json", out)

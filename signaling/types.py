@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass
 
-from ..graph import ontology as O
+from graph import ontology as O
 
 # signal kinds
 COSTLY = "costly"
