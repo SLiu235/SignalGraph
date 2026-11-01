@@ -1,0 +1,53 @@
+# Separate UTC research profile. `make all` continues to run the synthetic demo.
+seed: 42
+run_id: ""
+verbose: true
+data:
+  mode: historical
+graph:
+  storage: json
+  path: results/research_graph/graph.json
+signaling:
+  cost:
+    informed_cost_mult: 0.4
+    misaligned_cost_mult: 1.0
+research:
+  output_dir: results/research
+  events_path: results/research_inputs/events.json
+  market_path: results/research_inputs/market.json
+  edgar:
+    tickers: [AAPL, MSFT]
+    ciks: {AAPL: "0000320193", MSFT: "0000789019"}
+    start_date: "2023-01-01"
+    end_date: "2024-12-31"
+    forms: [8-K, 8-K/A, 10-K, 10-K/A, 10-Q, 10-Q/A]
+    user_agent: "" # SEC_USER_AGENT environment variable; real contact required
+    availability_mode: historical
+    latency_seconds: 60
+    rate_limit_seconds: 0.2
+    timeout_seconds: 30
+    cache_dir: results/raw/sec
+  features:
+    informed_prior: 0.5
+    aligned_prior: 0.5
+    filing_access_cost: 1.5
+    precision_prior: 0.8
+    novelty_lookback_days: 365
+  evaluation:
+    horizons: [1, 5, 20]
+    min_train_events: 20
+    test_events: 12
+    embargo_sessions: 5
+    estimation_sessions: 60
+    min_estimation_sessions: 20
+    momentum_sessions: 20
+    latency_seconds: 60       # execution delay after evidence availability, in addition to EDGAR latency
+    cost_bps_per_side: 5
+    slippage_bps_per_side: 5
+    bootstrap_samples: 300
+    min_oos_events: 100
+    min_oos_folds: 3
+    seed: 42
+  paper:
+    # Acceptance-to-decision limit. A newly fetched old accession is not a new signal.
+    max_filing_age_seconds: 259200

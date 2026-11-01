@@ -31,8 +31,13 @@ def _fetch_raw(cfg: dict, tickers: list) -> list:
     ua = cfg["data"]["edgar"]["user_agent"]
     resp = requests.get(cfg["data"]["edgar"]["submissions_url"], headers={"User-Agent": ua})
     resp.raise_for_status()
+    company_index = resp.json()
+    # SEC company_tickers.json is an object keyed by numeric strings, rather than
+    # a JSON array. Accept a list as well to keep the parser testable and robust to
+    # a compatible future response shape.
+    records = company_index.values() if isinstance(company_index, dict) else company_index
     cik_by_ticker = {}
-    for rec in resp.json():
+    for rec in records:
         cik_by_ticker[rec.get("ticker", "").upper()] = rec.get("cik_str")
 
     out = []
@@ -41,13 +46,15 @@ def _fetch_raw(cfg: dict, tickers: list) -> list:
         if not cik:
             continue
         time.sleep(cfg["data"]["edgar"]["rate_limit_s"])
-        r = requests.get(f"https://data.sec.gov/submissions/CIK{cik}.json",
+        r = requests.get(f"https://data.sec.gov/submissions/CIK{int(cik):010d}.json",
                          headers={"User-Agent": ua})
         r.raise_for_status()
         data = r.json()
-        for form, filed, accn in zip(data.get("form", []), data.get("filed", []),
-                                     data.get("accessionNumber", [])):
-            out.append({"ticker": ticker, "form": form, "filed": filed, "accn": accn})
+        recent = data.get("filings", {}).get("recent", data)
+        for form, filed, accn in zip(recent.get("form", []), recent.get("filingDate", recent.get("filed", [])),
+                                     recent.get("accessionNumber", [])):
+            if form in ("10-K", "8-K"):
+                out.append({"ticker": ticker, "form": form, "filed": filed, "accn": accn})
     return out
 
 

@@ -5,8 +5,8 @@ NO-LOOKAHEAD enforcement.
 A brief produced at day t may use only graph/evidence with timestamp <= t (enforced
 by extraction.retrieve / synthesis). The realized outcome is the price return over the
 window (t, t+window_days], using price observations STRICTLY after t. We then compare
-the model's predicted price impact (credibility-weighted signal direction) and its
-posterior confidence against the realized return, and write per-metric failure
+the model's predicted subsequent-return direction (credibility-weighted signal direction)
+and its posterior confidence against the realized return, and write per-metric failure
 summaries (including citation/hallucination counts from citation_check).
 """
 from __future__ import annotations
@@ -42,6 +42,34 @@ def predicted_impact(sig_scores: list) -> float:
     return best["credibility"] * d
 
 
+def impact_direction(value: float, threshold: float = 0.0) -> int:
+    """Classify an impact as positive, negative, or immaterial.
+
+    `threshold` is applied symmetrically to realized returns. A zero-direction model
+    prediction is neutral rather than being accidentally counted as bullish.
+    """
+    if value > threshold:
+        return 1
+    if value < -threshold:
+        return -1
+    return 0
+
+
+def directional_confidence(p_outperform: float | None, predicted_direction: int) -> float | None:
+    """Confidence assigned to the direction actually predicted.
+
+    The posterior is P(outperform), so a bearish prediction must use its complement.
+    A neutral prediction carries no directional preference and receives 0.5.
+    """
+    if p_outperform is None:
+        return None
+    if predicted_direction > 0:
+        return p_outperform
+    if predicted_direction < 0:
+        return 1.0 - p_outperform
+    return 0.5
+
+
 def score_brief(ticker: str, brief: dict, G, cfg) -> dict:
     t = brief["brief_time"]
     window = cfg["evaluation"]["outcome_window_days"]
@@ -55,15 +83,26 @@ def score_brief(ticker: str, brief: dict, G, cfg) -> dict:
                  if retrieve.day_of(s.get("timestamp", "")) > t]
 
     pred = predicted_impact(brief.get("signal_credibility", []))
+    predicted_direction = impact_direction(pred)
+    realized_direction = (
+        impact_direction(realized, float(cfg["evaluation"].get("price_impact_threshold", 0.0)))
+        if realized is not None else None
+    )
     hit = None
     if realized is not None:
-        hit = (pred >= 0) == (realized >= 0)
+        hit = predicted_direction == realized_direction
+
+    posterior = brief.get("posterior_confidence")
 
     return {
         "entity": ticker, "brief_time": t, "realized_return": realized,
-        "predicted_impact": round(pred, 4), "direction_hit": hit,
+        "predicted_impact": round(pred, 4),
+        "predicted_impact_direction": predicted_direction,
+        "realized_impact_direction": realized_direction,
+        "direction_hit": hit,
         "no_lookahead_violations": lookahead,
-        "posterior_confidence": brief.get("posterior_confidence"),
+        "posterior_confidence": posterior,
+        "directional_confidence": directional_confidence(posterior, predicted_direction),
     }
 
 
@@ -74,15 +113,15 @@ def run_benchmark(cfg):
 
     hits = [r for r in rows if r["direction_hit"] is not None]
     accuracy = sum(1 for r in hits if r["direction_hit"]) / len(hits) if hits else None
-    # posterior-confidence-weighted accuracy: re-weight each direction hit by the
-    # brief's stated Bayesian posterior confidence, so more-confident briefs count more.
-    # A calibrated model tends to be more accurate where it states higher confidence.
-    conf_hits = [r for r in hits if r["posterior_confidence"] is not None]
+    # Directional-confidence-weighted accuracy: weight a bullish call by P(outperform)
+    # and a bearish call by 1-P(outperform). The reported posterior is explicitly a
+    # heuristic sensitivity score, so this is a diagnostic rather than calibration.
+    conf_hits = [r for r in hits if r["directional_confidence"] is not None]
     w_accuracy = None
     if conf_hits:
-        tot = sum(r["posterior_confidence"] for r in conf_hits)
+        tot = sum(r["directional_confidence"] for r in conf_hits)
         if tot > 0:
-            w_accuracy = sum(r["posterior_confidence"] for r in conf_hits
+            w_accuracy = sum(r["directional_confidence"] for r in conf_hits
                              if r["direction_hit"]) / tot
     violations = [r for r in rows if r["no_lookahead_violations"]]
 
@@ -90,6 +129,8 @@ def run_benchmark(cfg):
     report = {
         "run_id": cfg["run_id"], "n_briefs": len(rows),
         "direction_accuracy": accuracy,
+        "directional_confidence_weighted_accuracy": w_accuracy,
+        # Kept as a compatibility alias for consumers of older result files.
         "confidence_weighted_accuracy": w_accuracy,
         "rows": rows,
         "no_lookahead_violations": violations,
@@ -107,7 +148,7 @@ def run_benchmark(cfg):
     acc_txt = f"{accuracy:.3f}" if accuracy is not None else "n/a"
     w_txt = f"{w_accuracy:.3f}" if w_accuracy is not None else "n/a"
     log(cfg, f"benchmark: {len(rows)} briefs, direction accuracy {acc_txt}, "
-             f"confidence-weighted accuracy {w_txt}, "
+             f"directional-confidence-weighted accuracy {w_txt}, "
              f"{len(violations)} no-lookahead violations, "
              f"citation: {citation['summary']}")
     log(cfg, f"wrote -> {RESULTS_DIR / 'evaluation' / 'decision_bench.json'}")

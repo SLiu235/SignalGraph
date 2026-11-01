@@ -17,6 +17,14 @@ from data import seed_graph
 
 
 def assemble_graph(cfg: dict):
+    mode = cfg["data"].get("mode", "synthetic")
+    if mode in ("historical", "edgar"):
+        from research.pipeline import historical_graph
+        return historical_graph(cfg)
+    if mode != "synthetic":
+        raise ValueError(
+            "initial graph build mode must be synthetic, historical, or edgar"
+        )
     companies, players, signals = seed_graph.build_seed_records(cfg)
     transmitted = seed_graph.build_transmitted_signals(cfg, players)
 

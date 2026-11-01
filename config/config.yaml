@@ -1,6 +1,6 @@
-# quant_signal_game — central configuration hub
+# SignalGraph — central configuration hub
 # Every tunable parameter lives here so runs are re-runnable and reproducible.
-# Paths are resolved relative to the repo root (quant_signal_game/).
+# Paths are resolved relative to the repository root.
 
 # ---- global ----
 seed: 42                      # master RNG seed for all deterministic generation
@@ -9,7 +9,7 @@ verbose: true
 
 # ---- data ----
 data:
-  mode: synthetic             # synthetic (deterministic, offline) | edgar (live SEC)
+  mode: synthetic             # default demo; historical/edgar initial builds use config/research.yaml
   num_companies: 12           # companies in the seed graph (synthetic mode)
   num_players_per_company: 7  # insider, analyst, competitor, supplier, regulator, journalist, fund
   price_history_len: 120      # synthetic daily prices per company
@@ -68,15 +68,48 @@ extraction:
   embed:
     backend: tfidf             # tfidf (offline, deterministic) | openai | sentence-transformers
   synthesis:
-    llm_backend: mock          # mock (rule-based, deterministic) | openai
-    model: ""                  # e.g. "gpt-4o-mini"; empty for mock
+    llm_backend: mock          # mock is implemented; non-mock values fail fast until a backend is added
+    model: ""                  # reserved for a future non-mock backend
     max_tokens: 1200
     temperature: 0.0
     cite_required: true        # uncited claims are dropped / marked low-confidence
+
+# ---- agents: multi-agent signaling-game simulation (agents/*) ----
+agents:
+  enabled: true
+  n_rounds: 5                # reaction rounds after the transmitted-signal corpus
+  round_step_days: 3         # reaction timestamp spacing after evaluation.brief_day
+  temperature: 0.5           # logit choice noise in the opponent generative model (agents)
+  # per-role strategy / information-access / response-time assignment (the 7 roles)
+  # strategy: bayes | irl | fictitious_play | heuristic
+  # info_access: full (all signals+reactions) | partial (own channels + same-company reactions)
+  #               | limited (own channels only, no reactions)
+  # response_time: fast (reacts this round) | slow (one-round lag)
+  role_defaults:
+    insider:    {strategy: irl,              info_access: full,    response_time: fast}
+    analyst:    {strategy: bayes,            info_access: partial, response_time: fast}
+    competitor: {strategy: fictitious_play,  info_access: partial, response_time: slow}
+    supplier:   {strategy: heuristic,        info_access: limited, response_time: slow}
+    regulator:  {strategy: bayes,            info_access: full,    response_time: fast}
+    journalist: {strategy: heuristic,        info_access: partial, response_time: slow}
+    fund:       {strategy: irl,              info_access: full,    response_time: fast}
+  # true latent payoff params each agent is tagged with (ground truth for IRL recovery):
+  #   theta_truth      weight on acting consistently with own belief (truth-seeking)
+  #   theta_contrarian weight on acting opposite to belief (impact-seeking / contrarian)
+  #   theta_stay       weight on inaction (cost / reputation avoidance)
+  payoff:
+    theta_truth_range: [0.5, 2.0]
+    theta_contrarian_range: [0.0, 1.5]
+    theta_stay_range: [0.0, 2.0]
+    temperature: 0.5
+  irl:
+    grid_truth: [0.5, 1.0, 1.5, 2.0]          # MLE grid over theta_truth
+    grid_contrarian: [0.0, 0.5, 1.0, 1.5]     # MLE grid over theta_contrarian
+    grid_stay: [0.0, 0.5, 1.0, 1.5, 2.0]      # MLE grid over theta_stay
 
 # ---- evaluation ----
 evaluation:
   brief_day: 40               # decision brief produced at day t; uses only data <= t
   outcome_window_days: 30      # brief at t scored against outcomes in (t, t+window]
   price_impact_threshold: 0.02 # |return| above this counts as a realized signal impact
-  metrics: [credibility, posterior_confidence, price_impact, citation_precision]
+  metrics: [credibility, posterior_confidence, price_impact, citation_coverage]

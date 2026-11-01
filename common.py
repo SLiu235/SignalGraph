@@ -1,5 +1,5 @@
 """
-quant_signal_game.common — shared utilities: config loading, deterministic RNG,
+SignalGraph common utilities: config loading, deterministic RNG,
 logging, and result writing. Every layer imports from here so seeds and configs
 are pinned once and stages stay re-runnable.
 """
@@ -20,8 +20,10 @@ DEFAULT_CONFIG_PATH = PKG_ROOT / "config" / "config.yaml"
 
 def load_config(path: str | Path) -> dict:
     cfg = yaml.safe_load(Path(path).read_text())
-    if "run_id" in cfg and not cfg["run_id"]:
-        cfg["run_id"] = make_run_id(cfg.get("seed", 42))
+    if not cfg.get("run_id"):
+        # A Makefile invocation supplies one shared ID so every stage of a pipeline
+        # run can be traced together. Direct module execution still gets a fresh ID.
+        cfg["run_id"] = os.environ.get("SIGNAL_GRAPH_RUN_ID") or make_run_id(cfg.get("seed", 42))
     cfg.setdefault("paths", {}).setdefault("root", str(PKG_ROOT))
     return cfg
 
@@ -69,8 +71,7 @@ def ensure_dir(path: Path | str) -> Path:
 
 
 def day_of(timestamp: str) -> int:
-    """Parse synthetic 'D####' timestamps into an integer day; ISO dates fall back
-    to 0 (live data ordering handled upstream). Shared by retrieval and evaluation."""
+    """Parse synthetic D#### timestamps only; ambiguous real times fail closed."""
     if timestamp.startswith("D"):
         try:
             return int(timestamp[1:])

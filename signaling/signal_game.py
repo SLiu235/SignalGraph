@@ -37,12 +37,12 @@ def signal_access_cost(G, player_node: str, stype: str) -> float | None:
     signal_access edge, or None if they lack transmit access."""
     edge_data = G.get_edge_data(player_node, f"stype:{stype}") or {}
     for attrs in edge_data.values():
-        if attrs.get("relation") == SIGNAL_ACCESS:
+        if attrs.get("relation") == SIGNAL_ACCESS and attrs.get("can_transmit"):
             return attrs.get("transmit_cost")
     return None
 
 
-def characterize_equilibrium(spec: T.SignalTypeSpec, access_cost: float) -> dict:
+def characterize_equilibrium(spec: T.SignalTypeSpec, access_cost: float, cfg: dict) -> dict:
     """Determine the equilibrium regime for a signal given the SENDER'S ACTUAL
     transmit cost (from their signal-access edge) and the type cost multipliers.
 
@@ -53,8 +53,9 @@ def characterize_equilibrium(spec: T.SignalTypeSpec, access_cost: float) -> dict
     Because access_cost differs per player, the same signal type can separate for
     some senders (high-cost channel) and pool for others (low-cost channel) — the
     interpretation genuinely depends on WHO transmits it and WHAT it costs them."""
-    cost_H = access_cost * _cfg_cache["signaling"]["cost"]["informed_cost_mult"]
-    cost_L = access_cost * _cfg_cache["signaling"]["cost"]["misaligned_cost_mult"]
+    cost = cfg["signaling"]["cost"]
+    cost_H = access_cost * cost["informed_cost_mult"]
+    cost_L = access_cost * cost["misaligned_cost_mult"]
     if spec.kind == T.CHEAP_TALK:
         # cheap talk: both types bear the same near-zero cost -> no Spence separation.
         # Override the type-scaled costs so c(H)==c(L)==access_cost (Crawford-Sobel).
@@ -101,12 +102,7 @@ def collect_transmitted_signals(G) -> list[dict]:
     return out
 
 
-_cfg_cache = None  # set in main so T.signal_cost has access to config
-
-
 def score_signals(G, cfg: dict) -> list[dict]:
-    global _cfg_cache
-    _cfg_cache = cfg
     specs = T.make_signal_type_specs()
     rec = cfg["signaling"]["receiver"]
     precision = float(rec["precision_prior"])
@@ -117,8 +113,11 @@ def score_signals(G, cfg: dict) -> list[dict]:
         # sender's own access cost (what it actually costs THIS sender to transmit)
         access_cost = signal_access_cost(G, s["player"], s["signal_type"])
         if access_cost is None:
-            access_cost = spec.base_cost  # fallback if access edge missing
-        eq = characterize_equilibrium(spec, access_cost)
+            raise ValueError(
+                f"{s['player']} transmits {s['signal_id']} without permitted "
+                f"signal_access for {s['signal_type']}"
+            )
+        eq = characterize_equilibrium(spec, access_cost, cfg)
         cred = credibility_from_regime(p_h, eq["regime"], precision)
         results.append({
             "signal_id": s["signal_id"], "company": G.nodes[s["signal"]].get("company"),
@@ -149,7 +148,7 @@ def main(argv=None):
     # equilibrium characterization per signal type (aggregate, representative access cost)
     specs = T.make_signal_type_specs()
     rep_cost = {"costly": 1.5, "cheap_talk": 0.02}
-    eq_by_type = {name: characterize_equilibrium(spec, rep_cost[spec.kind])
+    eq_by_type = {name: characterize_equilibrium(spec, rep_cost[spec.kind], cfg)
                   for name, spec in specs.items()}
     write_json(out / "equilibrium.json", {"run_id": cfg["run_id"], "by_type": eq_by_type,
                                          "by_signal": [r["equilibrium"] for r in results]})

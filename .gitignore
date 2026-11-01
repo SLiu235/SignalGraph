@@ -17,7 +17,11 @@ env/
 
 # ---- generated run artifacts (reproducible via `make all`) ----
 results/
-docs/
+# Keep local legacy notes out of version control, but retain the current
+# interview-readiness report as a project artifact.
+docs/*
+!docs/INTERVIEW_READINESS_REPORT.md
+!docs/RESEARCH_DATA_CONTRACT.md
 
 # ---- OS / editor ----
 .DS_Store

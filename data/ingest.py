@@ -66,8 +66,9 @@ def _feed_poll(cfg: dict, cursor: dict, source: str):
     step = int(cfg["data"]["ingest"]["feed_step_days"])
 
     signals, events = [], []
+    universe = SEED_COMPANIES[:int(cfg["data"]["num_companies"])]
     for i in range(per):
-        ticker = SEED_COMPANIES[rng.integers(0, len(SEED_COMPANIES))][0]
+        ticker = universe[rng.integers(0, len(universe))][0]
         day = start + poll * step + i
         ts = f"D{day:04d}"
         if source == "feed":

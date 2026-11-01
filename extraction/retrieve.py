@@ -10,27 +10,21 @@ from __future__ import annotations
 import argparse
 import sys
 
-from common import DEFAULT_CONFIG_PATH, load_config, log
+from common import DEFAULT_CONFIG_PATH, day_of, load_config, log
 from graph import storage
 from graph import ontology as O
 from graph.ontology import ABOUT, HAS_SOURCE, LINKED_TO, SIGNAL_ACCESS
 from . import embed
 
-DAY_PREFIX = "D"
+def evidence_visible(signal: dict, cutoff: int | str) -> bool:
+    """Keep synthetic and UTC timelines explicit, using actual availability in UTC."""
+    if isinstance(cutoff, int):
+        return day_of(signal.get("timestamp", "")) <= cutoff
+    from data.pit import parse_utc
+    return parse_utc(signal.get("available_at") or signal.get("timestamp", "")) <= parse_utc(cutoff)
 
 
-def day_of(timestamp: str) -> int:
-    """Parse synthetic 'D####' timestamps into an integer day; ISO dates fall back
-    to 0 (kept for live data where ordering is handled upstream)."""
-    if timestamp.startswith(DAY_PREFIX):
-        try:
-            return int(timestamp[1:])
-        except ValueError:
-            return 0
-    return 0
-
-
-def retrieve_subgraph(G, ticker: str, t: int) -> dict:
+def retrieve_subgraph(G, ticker: str, t: int | str) -> dict:
     """Company node + linked players + their signal-access edges + signals <= t."""
     company_node = f"company:{ticker}"
     company = dict(G.nodes[company_node])
@@ -42,6 +36,14 @@ def retrieve_subgraph(G, ticker: str, t: int) -> dict:
         player_node = u if G.nodes[u].get("kind") == O.PLAYER else v
         if G.nodes[player_node].get("company_ref") == ticker:
             players.append(player_node)
+
+    if isinstance(t, str):
+        # A full historical archive contains future issuers/relationships. Only
+        # expose a player after an observed transmission exists at the cutoff.
+        visible_senders = {s.get("sender") for _, s in G.nodes(data=True)
+                           if s.get("kind") == O.SIGNAL and s.get("company") == ticker
+                           and evidence_visible(s, t)}
+        players = [p for p in players if G.nodes[p].get("player_id") in visible_senders]
 
     player_access = {}
     for p in players:
@@ -64,17 +66,24 @@ def retrieve_subgraph(G, ticker: str, t: int) -> dict:
     for u, v, k, attrs in G.edges(keys=True, data=True):
         if k == ABOUT and (G.nodes[v].get("ticker") == ticker):
             s = G.nodes[u]
-            if day_of(s.get("timestamp", "")) <= t:
+            # Events also use ABOUT edges. Only signal nodes belong in the signal
+            # retrieval payload; indexing an event as a signal previously raised a
+            # KeyError after incremental ingestion.
+            if s.get("kind") != O.SIGNAL:
+                continue
+            if evidence_visible(s, t):
                 signals.append({
                     "signal_id": s["signal_id"], "signal_type": s["signal_type"],
                     "kind": s["kind_of_signal"], "content": s["content"],
                     "sender": s["sender"], "timestamp": s["timestamp"],
+                    "available_at": s.get("available_at", s["timestamp"]),
+                    "document_sha256": s.get("document_sha256"),
                 })
 
     return {"company": company, "players": player_access, "signals": signals}
 
 
-def retrieve_passages(G, ticker: str, t: int, query: str, top_k: int) -> list[dict]:
+def retrieve_passages(G, ticker: str, t: int | str, query: str, top_k: int) -> list[dict]:
     """Passage retrieval over filings/news (source of record) with timestamp <= t."""
     passages = []
     for u, v, k, attrs in G.edges(keys=True, data=True):
@@ -84,10 +93,12 @@ def retrieve_passages(G, ticker: str, t: int, query: str, top_k: int) -> list[di
         if G.nodes[u].get("ticker") == ticker:
             s = G.nodes[v]
             if s.get("source") in ("filing", "news", "transcript", "disclosure") \
-                    and day_of(s.get("timestamp", "")) <= t:
+                    and evidence_visible(s, t):
                 passages.append({"id": s["signal_id"], "text": s["content"],
                                  "meta": {"source": s["source"], "source_id": s["source_id"],
-                                          "timestamp": s["timestamp"], "signal_type": s["signal_type"]}})
+                                          "timestamp": s["timestamp"], "signal_type": s["signal_type"],
+                                          "available_at": s.get("available_at", s["timestamp"]),
+                                          "document_sha256": s.get("document_sha256")}})
     idx = embed.build_index(passages)
     hits = idx.query(query, top_k)
     out = []

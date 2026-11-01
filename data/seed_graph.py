@@ -161,11 +161,21 @@ def build_seed_records(cfg: dict):
     brief_day = int(cfg["evaluation"]["brief_day"])
     outcome_drift = float(cfg["data"].get("outcome_drift", 0.01))
 
+    if not 1 <= n <= len(SEED_COMPANIES):
+        raise ValueError(
+            f"data.num_companies must be between 1 and {len(SEED_COMPANIES)} "
+            f"for the synthetic seed universe; got {n}"
+        )
+    if not 1 <= n_players <= len(O.ROLES):
+        raise ValueError(
+            f"data.num_players_per_company must be between 1 and {len(O.ROLES)}; "
+            f"got {n_players}"
+        )
+
     companies = []
     players = []
     signals = []
-    for i in range(n):
-        ticker, name, sector = SEED_COMPANIES[i % len(SEED_COMPANIES)]
+    for i, (ticker, name, sector) in enumerate(SEED_COMPANIES[:n]):
         # latent outcome direction drives the post-brief price drift (meaningful outcome);
         # drift starts strictly after brief_day so the day-t base price carries no signal
         y = _outcome_direction(ticker)
@@ -178,8 +188,10 @@ def build_seed_records(cfg: dict):
         )
         companies.append(c)
 
-        # players per company, one per role
-        for role in O.ROLES:
+        # Players per company, deterministically selected from the canonical role list.
+        # Do not silently create duplicate player IDs when a configuration asks for more
+        # roles than the synthetic universe defines.
+        for role in O.ROLES[:n_players]:
             pid = f"{ticker.lower()}_{role}"
             cred = O.ROLE_CREDIBILITY_PRIOR[role] + rng.uniform(-0.08, 0.08)
             cred = max(0.05, min(0.98, cred))
